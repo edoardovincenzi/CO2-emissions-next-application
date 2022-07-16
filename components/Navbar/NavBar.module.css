@@ -1,0 +1,12 @@
+.navBar {
+  background-color: #56cbf9;
+  width: 100vw;
+  height: 10vh;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
