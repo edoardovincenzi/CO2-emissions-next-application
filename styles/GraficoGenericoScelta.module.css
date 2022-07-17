@@ -1,0 +1,24 @@
+.flexboxDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.cardPaper:hover {
+  transform: scale(1.1);
+}
+
+.autocomplete {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  padding: 10px;
+}
+
+.autocomplete > button {
+  margin-left: 10px;
+}

@@ -10,8 +10,8 @@ import BasicBreadcrumbs, {
 
 const array: ICrumbs[] = [
   { name: 'Home', href: '/' },
-  { name: 'Grafico generico', href: '/scelta-stato' },
-  { name: 'Grafico ricerca avanzata', href: '/scelta-stato' },
+  { name: 'Grafico generico', href: '/grafico-generico' },
+  { name: 'Grafico ricerca avanzata', href: '/grafico-ricerca-avanzata' },
 ];
 function MyApp({ Component, pageProps }: AppProps) {
   return (

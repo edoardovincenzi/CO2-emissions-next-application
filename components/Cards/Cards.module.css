@@ -1,0 +1,26 @@
+.cardPaper {
+  height: 10vw;
+  width: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 8px;
+  background-color: #dbd8f0;
+  transition: transform 1s;
+  text-align: center;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 576px) {
+  .cardPaper {
+    height: 40vw;
+    width: 40vw;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 1200px) {
+  .cardPaper {
+    height: 20vw;
+    width: 20vw;
+  }
+}
