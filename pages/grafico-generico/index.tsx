@@ -1,12 +1,11 @@
 import { Button, Paper } from '@mui/material';
 import React, { useState } from 'react';
-import { useGraficoGenericoScelta } from '../API/APIcalls';
-import styles from '../styles/GraficoGenericoScelta.module.css';
-
+import { useGraficoGenericoScelta } from '../../API/APIcalls';
+import styles from '../../styles/GraficoGenericoScelta.module.css';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useRouter } from 'next/router';
-import Cards from '../components/Cards/Cards';
+import Cards from '../../components/Cards/Cards';
 
 const GraficoGenericoScelta = () => {
   const { data, error } = useGraficoGenericoScelta();

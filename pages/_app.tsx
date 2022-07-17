@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import NavBar from '../components/Navbar/NavBar';
 import Footer from '../components/Footer/Footer';
-import { Container } from '@mui/material';
+import { Container, StyledEngineProvider } from '@mui/material';
 import BasicBreadcrumbs, {
   ICrumbs,
 } from '../components/Breadcrumbs/Breadcrumbs';
@@ -24,12 +24,14 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
-      <BasicBreadcrumbs crumbs={array} />
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-      <Footer />
+      <StyledEngineProvider injectFirst>
+        <NavBar />
+        <BasicBreadcrumbs crumbs={array} />
+        <Container>
+          <Component {...pageProps} />
+        </Container>
+        <Footer />
+      </StyledEngineProvider>
     </>
   );
 }
