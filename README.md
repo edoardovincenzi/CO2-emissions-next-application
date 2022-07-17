@@ -1,5 +1,7 @@
 # Progetto Next
 
+### Link del progetto : https://simple-next-application.vercel.app/
+
 In questa web app visualizzerai le emissioni di CO2 per paese, l’API ti darà tantissime possibilità di valutare i dati della CO2.
 
 API utilizzate : https://api.v2.emissions-api.org/ui/
@@ -13,3 +15,5 @@ API utilizzate : https://api.v2.emissions-api.org/ui/
 
 - 2 - Grafico CO2 degli ultimi 6 mesi di uno stato  
   Dato uno stato visualizza un grafico con le emissioni di CO2 degli ultimi 6 mesi.
+
+
