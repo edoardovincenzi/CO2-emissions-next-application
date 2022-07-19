@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { options } from '../chartUtils';
+import { getTextMonth, options } from '../chartUtils';
 
 ChartJS.register(
   CategoryScale,
@@ -23,10 +23,10 @@ ChartJS.register(
 const VerticalBar = ({ data }: any) => {
   const labels = data.map((item: any) => {
     const month: Date = new Date(item.time.min);
-    return month.getMonth() + 1;
+    return getTextMonth(month.getMonth());
   });
 
-  const cleanData = data.map((item: any) => {
+  const clearData = data.map((item: any) => {
     return item.value.average;
   });
 
@@ -36,7 +36,7 @@ const VerticalBar = ({ data }: any) => {
       {
         label: 'Emissioni CO2',
         data: labels.map((month: number, index: number) => {
-          return cleanData[index];
+          return clearData[index];
         }),
         backgroundColor: 'rgb(86, 203, 249, 0.5)',
       },

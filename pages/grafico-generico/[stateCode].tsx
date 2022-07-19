@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useGetLastSixMonths } from '../../API/APIcalls';
 import VerticalBar from '../../components/VerticalBar';
 import { Typography } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const GraphGenericState = () => {
   const router = useRouter();
@@ -21,9 +22,9 @@ const GraphGenericState = () => {
     <>
       <Typography variant="h3" component="h1" sx={{ color: 'black', mb: 5 }}>
         Grafico raffigurante la media delle emissioni di C02 dello stato con il
-        codice :{stateCode}
+        codice : {stateCode}
       </Typography>
-      <VerticalBar data={data} />
+      {data ? <VerticalBar data={data} /> : <CircularProgress />}
     </>
   );
 };

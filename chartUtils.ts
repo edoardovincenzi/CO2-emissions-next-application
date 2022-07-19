@@ -10,3 +10,22 @@ export const options = {
     },
   },
 };
+
+export const getTextMonth = (numMonth: number) => {
+  return textMonth[numMonth];
+};
+
+const textMonth = [
+  'Gennaio',
+  'Febbraio',
+  'Marzo',
+  'Aprile',
+  'Maggio',
+  'Giugno',
+  'Luglio',
+  'Agosto',
+  'Settembre',
+  'Ottobre',
+  'Novembre',
+  'Dicembre',
+];
