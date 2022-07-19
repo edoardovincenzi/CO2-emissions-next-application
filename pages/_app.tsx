@@ -1,12 +1,24 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import NavBar from '../components/Navbar/NavBar';
+import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import { Container, StyledEngineProvider } from '@mui/material';
 import BasicBreadcrumbs, {
   ICrumbs,
 } from '../components/Breadcrumbs/Breadcrumbs';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import axios from 'axios';
+import { APIBASEURL } from '../constant';
+
+const queryClient = new QueryClient();
+
+export const axiosCall = axios.create({
+  baseURL: APIBASEURL,
+  headers: {
+    'Content-type': 'application/json',
+  },
+});
 
 const array: ICrumbs[] = [
   { name: 'Home', href: '/' },
@@ -25,12 +37,14 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledEngineProvider injectFirst>
-        <NavBar />
-        <BasicBreadcrumbs crumbs={array} />
-        <Container>
-          <Component {...pageProps} />
-        </Container>
-        <Footer />
+        <QueryClientProvider client={queryClient}>
+          <Header />
+          <BasicBreadcrumbs crumbs={array} />
+          <Container>
+            <Component {...pageProps} />
+          </Container>
+          <Footer />
+        </QueryClientProvider>
       </StyledEngineProvider>
     </>
   );

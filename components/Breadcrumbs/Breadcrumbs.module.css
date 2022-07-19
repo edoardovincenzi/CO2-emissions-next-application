@@ -1,3 +1,7 @@
 .navBreadcrumbs > ol {
   justify-content: center;
 }
+
+.navBreadcrumbs {
+  margin-bottom: 20px;
+}

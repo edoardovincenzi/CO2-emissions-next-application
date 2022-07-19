@@ -1,1 +1,1 @@
-export const APIBASEURL = 'https://api.v2.emissions-api.org/api/v2';
+export const APIBASEURL = 'https://api.v2.emissions-api.org/api/v2/';

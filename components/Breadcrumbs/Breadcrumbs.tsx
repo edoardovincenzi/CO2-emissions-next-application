@@ -4,6 +4,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import LinkMUI from '@mui/material/Link';
 import Link from 'next/link';
 import styles from './Breadcrumbs.module.css';
+import Divider from '@mui/material/Divider';
 
 export interface ICrumbs {
   name: string;
@@ -12,7 +13,7 @@ export interface ICrumbs {
 
 export default function BasicBreadcrumbs({ crumbs }: { crumbs: ICrumbs[] }) {
   return (
-    <div role="presentation" style={{ padding: '15px', height: '10vh' }}>
+    <div role="presentation" style={{ padding: '15px', height: '13vh' }}>
       <Breadcrumbs
         aria-label="breadcrumb"
         separator="-"
@@ -28,6 +29,7 @@ export default function BasicBreadcrumbs({ crumbs }: { crumbs: ICrumbs[] }) {
           );
         })}
       </Breadcrumbs>
+      <Divider />
     </div>
   );
 }

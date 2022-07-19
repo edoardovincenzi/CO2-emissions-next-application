@@ -1,20 +1,23 @@
 import { Button, Paper } from '@mui/material';
 import React, { useState } from 'react';
-import { useGraficoGenericoScelta } from '../../API/APIcalls';
+import { useGetCountries } from '../../API/APIcalls';
 import styles from '../../styles/GraficoGenericoScelta.module.css';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { useRouter } from 'next/router';
 import Cards from '../../components/Cards/Cards';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const GraficoGenericoScelta = () => {
-  const { data, error } = useGraficoGenericoScelta();
+  const { isLoading, data: countries, error } = useGetCountries();
   const [autocompleteValue, setAutocompleteValue] = useState('');
   const router = useRouter();
 
-  const dataArrayKeyValue = data && Object.entries(data);
+  const dataArrayKeyValue = (countries && Object.entries(countries)) ?? [];
   const dataArrayValue =
-    data && Object.entries(data).map((item) => `[${item[0]}] ${item[1]}`);
+    (countries &&
+      Object.entries(countries).map((item) => `[${item[0]}] ${item[1]}`)) ??
+    [];
 
   const handleSearch = () => {
     autocompleteValue
@@ -31,6 +34,13 @@ const GraficoGenericoScelta = () => {
       </div>
     );
   }
+  if (isLoading) {
+    return (
+      <div className={styles.flexboxDiv}>
+        <CircularProgress />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.flexboxDiv}>
@@ -42,7 +52,7 @@ const GraficoGenericoScelta = () => {
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Stati" />}
           onChange={(event, values) => {
-            if (values) {
+            if (values && typeof values === 'string') {
               setAutocompleteValue(values.slice(1, 3));
             }
           }}
@@ -51,8 +61,8 @@ const GraficoGenericoScelta = () => {
           Cerca
         </Button>
       </div>
-      {data &&
-        dataArrayKeyValue.map((item: [string, string][], index) => {
+      {countries &&
+        dataArrayKeyValue.map((item: [string, string][], index: number) => {
           return <Cards item={item} key={index} />;
         })}
     </div>
