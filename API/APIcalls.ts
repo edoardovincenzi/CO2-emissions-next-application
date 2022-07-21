@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { APIBASEURL } from '../constant';
 import { useQuery } from '@tanstack/react-query';
-import { axiosCall } from '../pages/_app';
+import { axiosCall } from '../utility/costant';
 
 export const useGetCountries = () => {
   const { isLoading, data, error } = useQuery(

@@ -4,27 +4,10 @@ import Head from 'next/head';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import { Container, StyledEngineProvider } from '@mui/material';
-import BasicBreadcrumbs, {
-  ICrumbs,
-} from '../components/Breadcrumbs/Breadcrumbs';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import axios from 'axios';
-import { APIBASEURL } from '../constant';
+import BasicBreadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { array, queryClient } from '../utility/costant';
 
-const queryClient = new QueryClient();
-
-export const axiosCall = axios.create({
-  baseURL: APIBASEURL,
-  headers: {
-    'Content-type': 'application/json',
-  },
-});
-
-const array: ICrumbs[] = [
-  { name: 'Home', href: '/' },
-  { name: 'Grafico generico', href: '/grafico-generico' },
-  { name: 'Grafico ricerca avanzata', href: '/grafico-ricerca-avanzata' },
-];
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>

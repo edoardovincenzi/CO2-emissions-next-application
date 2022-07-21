@@ -5,11 +5,7 @@ import LinkMUI from '@mui/material/Link';
 import Link from 'next/link';
 import styles from './Breadcrumbs.module.css';
 import Divider from '@mui/material/Divider';
-
-export interface ICrumbs {
-  name: string;
-  href: string;
-}
+import { ICrumbs } from '../../model';
 
 export default function BasicBreadcrumbs({ crumbs }: { crumbs: ICrumbs[] }) {
   return (

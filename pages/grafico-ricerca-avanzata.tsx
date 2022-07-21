@@ -17,12 +17,7 @@ import {
 } from '../utility/setErrorMessage';
 import style from '../styles/GraficoRicercaAvanzata.module.css';
 import { Box } from '@mui/system';
-
-interface IErrorFields {
-  dates: { IsError: boolean; textMessage: string };
-  latitudine: { IsError: boolean; textMessage: string };
-  longitudine: { IsError: boolean; textMessage: string };
-}
+import { IErrorFields } from '../model';
 
 const GraficoRicercaAvanzata = () => {
   const [dateFrom, setDateFrom] = React.useState<Date | null>(new Date());
@@ -30,7 +25,7 @@ const GraficoRicercaAvanzata = () => {
   const [autocompleteValue, setAutocompleteValue] = useState<string>('');
   const latitudine = useRef<HTMLInputElement | null>();
   const longitudine = useRef<HTMLInputElement | null>();
-  const { isLoading, data: countries, error } = useGetCountries();
+  const { data: countries, error } = useGetCountries();
   const [errorFields, setErrorFields] = useState<IErrorFields>({
     dates: { IsError: false, textMessage: '' },
     latitudine: { IsError: false, textMessage: '' },
@@ -62,7 +57,7 @@ const GraficoRicercaAvanzata = () => {
 
   return (
     <form className={style.form} onSubmit={onSubmit}>
-      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <div className={style.box}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             disableFuture
@@ -96,14 +91,14 @@ const GraficoRicercaAvanzata = () => {
               <TextField
                 required
                 {...params}
-                sx={{ml: 1,mb: 1,}}
+                sx={{ ml: 1, mb: 1 }}
                 error={errorFields.dates.IsError}
                 helperText={errorFields.dates.textMessage}
               />
             )}
           />
         </LocalizationProvider>
-      </Box>
+      </div>
       <Autocomplete
         disablePortal
         id="combo-box-demo"
@@ -127,9 +122,7 @@ const GraficoRicercaAvanzata = () => {
           }
         }}
       />
-      <Box
-        sx={{ mb: 2, width: '100%', display: 'flex', justifyContent: 'center' }}
-      >
+      <Box className={style.box} sx={{ mb: 2 }}>
         <TextField
           error={errorFields.latitudine.IsError}
           helperText={errorFields.latitudine.textMessage}
