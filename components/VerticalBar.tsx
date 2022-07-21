@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { getTextMonth, options } from '../chartUtils';
+import { IStatistics } from '../model';
 
 ChartJS.register(
   CategoryScale,
@@ -20,13 +21,13 @@ ChartJS.register(
   Legend
 );
 
-const VerticalBar = ({ data }: any) => {
-  const labels = data.map((item: any) => {
+const VerticalBar = ({ data }: { data: IStatistics[] }) => {
+  const labels = data.map((item: IStatistics) => {
     const month: Date = new Date(item.time.min);
     return getTextMonth(month.getMonth());
   });
 
-  const clearData = data.map((item: any) => {
+  const clearData = data.map((item: IStatistics) => {
     return item.value.average;
   });
 
@@ -35,7 +36,7 @@ const VerticalBar = ({ data }: any) => {
     datasets: [
       {
         label: 'Emissioni CO2',
-        data: labels.map((month: number, index: number) => {
+        data: labels.map((month: string, index: number) => {
           return clearData[index];
         }),
         backgroundColor: 'rgb(86, 203, 249, 0.5)',

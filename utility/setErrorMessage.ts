@@ -1,14 +1,16 @@
-export function getDatesError(fieldError: any) {
+import { IErrorFields } from '../model';
+
+export function getDatesError(fieldError: IErrorFields) {
   return {
     ...fieldError,
     dates: {
       IsError: true,
-      textMessage: 'FROM deve essere minore ti TO',
+      textMessage: 'DA deve essere minore di A',
     },
   };
 }
 
-export function getDatesNoError(fieldError: any) {
+export function getDatesNoError(fieldError: IErrorFields) {
   return {
     ...fieldError,
     dates: {
@@ -18,7 +20,7 @@ export function getDatesNoError(fieldError: any) {
   };
 }
 
-export function getLatError(fieldError: any) {
+export function getLatError(fieldError: IErrorFields) {
   return {
     ...fieldError,
     latitudine: {
@@ -28,7 +30,7 @@ export function getLatError(fieldError: any) {
   };
 }
 
-export function getLatNoError(fieldError: any) {
+export function getLatNoError(fieldError: IErrorFields) {
   return {
     ...fieldError,
     latitudine: {
@@ -38,7 +40,7 @@ export function getLatNoError(fieldError: any) {
   };
 }
 
-export function getLongError(fieldError: any) {
+export function getLongError(fieldError: IErrorFields) {
   return {
     ...fieldError,
     longitudine: {
@@ -48,7 +50,7 @@ export function getLongError(fieldError: any) {
   };
 }
 
-export function getLongNoError(fieldError: any) {
+export function getLongNoError(fieldError: IErrorFields) {
   return {
     ...fieldError,
     longitudine: {

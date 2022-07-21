@@ -6,7 +6,7 @@ import { useGetCountries } from '../API/APIcalls';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import Button from '@mui/material/Button';
-import { checkDates, checkIsNumber } from '../utility/checkDatas';
+import { checkDates } from '../utility/checkDatas';
 import {
   getDatesError,
   getDatesNoError,
@@ -18,6 +18,8 @@ import {
 import style from '../styles/GraficoRicercaAvanzata.module.css';
 import { Box } from '@mui/system';
 import { IErrorFields } from '../model';
+import { errorFieldsInitial } from '../utility/costant';
+import { formatDate } from '../utility';
 
 const GraficoRicercaAvanzata = () => {
   const [dateFrom, setDateFrom] = React.useState<Date | null>(new Date());
@@ -26,16 +28,17 @@ const GraficoRicercaAvanzata = () => {
   const latitudine = useRef<HTMLInputElement | null>();
   const longitudine = useRef<HTMLInputElement | null>();
   const { data: countries, error } = useGetCountries();
-  const [errorFields, setErrorFields] = useState<IErrorFields>({
-    dates: { IsError: false, textMessage: '' },
-    latitudine: { IsError: false, textMessage: '' },
-    longitudine: { IsError: false, textMessage: '' },
-  });
+  const [errorFields, setErrorFields] =
+    useState<IErrorFields>(errorFieldsInitial);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let fieldError = {};
-    fieldError = !(dateFrom && dateTo && checkDates(dateFrom, dateTo))
+    let fieldError = errorFieldsInitial;
+    fieldError = !(
+      dateFrom &&
+      dateTo &&
+      checkDates(new Date(formatDate(dateFrom)), new Date(formatDate(dateTo)))
+    )
       ? getDatesError(fieldError)
       : getDatesNoError(fieldError);
 
