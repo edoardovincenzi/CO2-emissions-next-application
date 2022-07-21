@@ -13,23 +13,25 @@ export interface ICrumbs {
 
 export default function BasicBreadcrumbs({ crumbs }: { crumbs: ICrumbs[] }) {
   return (
-    <div role="presentation" style={{ padding: '15px', height: '13vh' }}>
-      <Breadcrumbs
-        aria-label="breadcrumb"
-        separator="-"
-        className={styles.navBreadcrumbs}
-      >
-        {crumbs.map((item: ICrumbs, index: number) => {
-          return (
-            <Link key={index} href={item.href} passHref>
-              <LinkMUI key={index} underline="hover" color="inherit">
-                {item.name}
-              </LinkMUI>
-            </Link>
-          );
-        })}
-      </Breadcrumbs>
-      <Divider />
-    </div>
+    <>
+      <div role="presentation" style={{ padding: '15px', height: '13vh' }}>
+        <Breadcrumbs
+          aria-label="breadcrumb"
+          separator="-"
+          className={styles.navBreadcrumbs}
+        >
+          {crumbs.map((item: ICrumbs, index: number) => {
+            return (
+              <Link key={index} href={item.href} passHref>
+                <LinkMUI key={index} underline="hover" color="inherit">
+                  {item.name}
+                </LinkMUI>
+              </Link>
+            );
+          })}
+        </Breadcrumbs>
+      </div>
+      <Divider sx={{ mb: 2 }} />
+    </>
   );
 }
