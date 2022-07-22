@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export function formatDate(date: Date) {
   return [
     date.getFullYear(),
@@ -8,4 +10,15 @@ export function formatDate(date: Date) {
 
 function padTo2Digits(num: number) {
   return num.toString().padStart(2, '0');
+}
+
+export function setErrorTimeout(
+  setText: Dispatch<SetStateAction<string>>,
+  text: string,
+  time: number
+) {
+  setText(text);
+  setTimeout(() => {
+    setText('');
+  }, time);
 }

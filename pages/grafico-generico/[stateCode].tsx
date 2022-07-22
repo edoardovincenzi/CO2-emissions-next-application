@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { useGetLastSixMonths } from '../../API/APIcalls';
+import { useGetLastSixMonths_country } from '../../API/APIcalls';
 import VerticalBar from '../../components/VerticalBar';
 import { Box, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -9,7 +9,9 @@ import styles from '../../styles/GraficoGenericoScelta.module.css';
 const GraphGenericState = () => {
   const router = useRouter();
   const { stateCode } = router.query;
-  const { isLoading, data, error } = useGetLastSixMonths(stateCode as string);
+  const { isLoading, data, error } = useGetLastSixMonths_country(
+    stateCode as string
+  );
 
   if (error) {
     return (

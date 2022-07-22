@@ -3,6 +3,50 @@ export interface IErrorFields {
   latitudine: { IsError: boolean; textMessage: string };
   longitudine: { IsError: boolean; textMessage: string };
 }
+export interface IGetLatLong {
+  cacheid: string;
+  cachename: string;
+  cacheslug: string;
+  cachelat: string;
+  cachelon: string;
+  cacheutm: string;
+  cacheupdate: string;
+  locationlat: string;
+  locationlon: string;
+}
+
+export interface ICityState {
+  city: string;
+  search: boolean;
+}
+export interface IAppStore {
+  latitudine: number | null;
+  longitudine: number | null;
+  error: string | null;
+  populateLat: (latitudine: number | null) => void;
+  populateLong: (longitudine: number | null) => void;
+  populateError: (error: string | null) => void;
+}
+
+export interface DateFrom {
+  dateFrom: Date | null;
+  setDateFrom: React.Dispatch<React.SetStateAction<Date | null>>;
+}
+
+export interface DateTo {
+  dateTo: Date | null;
+  setDateTo: React.Dispatch<React.SetStateAction<Date | null>>;
+}
+
+export interface IModal {
+  handleClose: () => void;
+  open: boolean;
+}
+
+export interface IDateFromTo {
+  dateF: DateFrom;
+  dateT: DateTo;
+}
 
 export interface ICrumbs {
   name: string;

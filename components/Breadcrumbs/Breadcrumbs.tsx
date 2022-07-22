@@ -10,7 +10,7 @@ import { ICrumbs } from '../../model';
 export default function BasicBreadcrumbs({ crumbs }: { crumbs: ICrumbs[] }) {
   return (
     <>
-      <div role="presentation" style={{ padding: '15px', height: '13vh' }}>
+      <div role="presentation" className={styles.divBreadcrumbs}>
         <Breadcrumbs
           aria-label="breadcrumb"
           separator="-"

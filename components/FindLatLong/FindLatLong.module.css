@@ -1,0 +1,12 @@
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}

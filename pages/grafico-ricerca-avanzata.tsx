@@ -1,155 +1,38 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TextField } from '@mui/material';
-import Autocomplete from '@mui/material/Autocomplete';
-import { useGetCountries } from '../API/APIcalls';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import Button from '@mui/material/Button';
-import { checkDates } from '../utility/checkDatas';
-import {
-  getDatesError,
-  getDatesNoError,
-  getLatError,
-  getLatNoError,
-  getLongError,
-  getLongNoError,
-} from '../utility/setErrorMessage';
-import style from '../styles/GraficoRicercaAvanzata.module.css';
+import { useState } from 'react';
+import { Paper } from '@mui/material';
 import { Box } from '@mui/system';
-import { IErrorFields } from '../model';
-import { errorFieldsInitial } from '../utility/costant';
-import { formatDate } from '../utility';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import { FormSearchState, FormSearchLatLong } from 'FormsSearch';
 
 const GraficoRicercaAvanzata = () => {
-  const [dateFrom, setDateFrom] = React.useState<Date | null>(new Date());
-  const [dateTo, setDateTo] = React.useState<Date | null>(new Date());
-  const [autocompleteValue, setAutocompleteValue] = useState<string>('');
-  const latitudine = useRef<HTMLInputElement | null>();
-  const longitudine = useRef<HTMLInputElement | null>();
-  const { data: countries, error } = useGetCountries();
-  const [errorFields, setErrorFields] =
-    useState<IErrorFields>(errorFieldsInitial);
+  const [value, setValue] = useState('2');
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    let fieldError = errorFieldsInitial;
-    fieldError = !(
-      dateFrom &&
-      dateTo &&
-      checkDates(new Date(formatDate(dateFrom)), new Date(formatDate(dateTo)))
-    )
-      ? getDatesError(fieldError)
-      : getDatesNoError(fieldError);
-
-    fieldError = isNaN(Number(latitudine.current?.value))
-      ? getLatError(fieldError)
-      : getLatNoError(fieldError);
-
-    fieldError = isNaN(Number(longitudine.current?.value))
-      ? getLongError(fieldError)
-      : getLongNoError(fieldError);
-
-    setErrorFields({ ...errorFields, ...fieldError });
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
   };
 
-  const dataArrayValue =
-    (countries &&
-      Object.entries(countries).map((item) => `[${item[0]}] ${item[1]}`)) ??
-    [];
-
   return (
-    <form className={style.form} onSubmit={onSubmit}>
-      <div className={style.box}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            disableFuture
-            label="Data da"
-            openTo="year"
-            views={['year', 'month', 'day']}
-            value={dateFrom}
-            onChange={(newDateFrom: Date | null) => {
-              setDateFrom(newDateFrom);
-            }}
-            renderInput={(params: any) => (
-              <TextField
-                required
-                {...params}
-                error={errorFields.dates.IsError}
-                helperText={errorFields.dates.textMessage}
-              />
-            )}
-          />
-
-          <DatePicker
-            disableFuture
-            label="Data al"
-            openTo="year"
-            views={['year', 'month', 'day']}
-            value={dateTo}
-            onChange={(newDateTo: Date | null) => {
-              setDateTo(newDateTo);
-            }}
-            renderInput={(params: any) => (
-              <TextField
-                required
-                {...params}
-                sx={{ ml: 1, mb: 1 }}
-                error={errorFields.dates.IsError}
-                helperText={errorFields.dates.textMessage}
-              />
-            )}
-          />
-        </LocalizationProvider>
-      </div>
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={dataArrayValue}
-        sx={{
-          width: 300,
-          mb: 1,
-        }}
-        renderInput={(params) => (
-          <TextField
-            required
-            error={Boolean(error)}
-            helperText={error ? 'Errore durante il recupero degli stati' : ''}
-            {...params}
-            label="Stati"
-          />
-        )}
-        onChange={(event, values) => {
-          if (values && typeof values === 'string') {
-            setAutocompleteValue(values.slice(1, 3));
-          }
-        }}
-      />
-      <Box className={style.box} sx={{ mb: 2 }}>
-        <TextField
-          error={errorFields.latitudine.IsError}
-          helperText={errorFields.latitudine.textMessage}
-          id="standard-basic"
-          inputRef={latitudine}
-          label="Latitudine"
-          variant="standard"
-          required
-        />
-        <TextField
-          sx={{ ml: 1 }}
-          error={errorFields.longitudine.IsError}
-          helperText={errorFields.longitudine.textMessage}
-          id="standard-basic"
-          inputRef={longitudine}
-          label="Longitudine"
-          variant="standard"
-          required
-        />
-      </Box>
-      <Button variant="contained" type="submit">
-        Cerca
-      </Button>
-    </form>
+    <Paper elevation={3} sx={{ height: '100%', backgroundColor: '#DBD8F0' }}>
+      <TabContext value={value}>
+        <Box>
+          {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}> */}
+          <TabList onChange={handleChange} aria-label="different form" centered>
+            <Tab disabled label="Cerca per : " value="1" />
+            <Tab label="Stato" value="2" />
+            <Tab label="Latitudine e Longitudine" value="3" />
+          </TabList>
+        </Box>
+        <TabPanel value="2">
+          <FormSearchState />
+        </TabPanel>
+        <TabPanel value="3">
+          <FormSearchLatLong />
+        </TabPanel>
+      </TabContext>
+    </Paper>
   );
 };
 

@@ -219,33 +219,33 @@
 
 "@date-io/core@^2.14.0":
   "integrity" "sha512-qFN64hiFjmlDHJhu+9xMkdfDG2jLsggNxKXglnekUpXSq8faiqZgtHm2lsHCUuaPDTV6wuXHcCl8J1GQ5wLmPw=="
-  "resolved" "https://registry.npmjs.org/@date-io/core/-/core-2.14.0.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@date-io/core/-/core-2.14.0.tgz"
   "version" "2.14.0"
 
 "@date-io/date-fns@^2.14.0":
   "integrity" "sha512-4fJctdVyOd5cKIKGaWUM+s3MUXMuzkZaHuTY15PH70kU1YTMrCoauA7hgQVx9qj0ZEbGrH9VSPYJYnYro7nKiA=="
-  "resolved" "https://registry.npmjs.org/@date-io/date-fns/-/date-fns-2.14.0.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@date-io/date-fns/-/date-fns-2.14.0.tgz"
   "version" "2.14.0"
   dependencies:
     "@date-io/core" "^2.14.0"
 
 "@date-io/dayjs@^2.14.0":
   "integrity" "sha512-4fRvNWaOh7AjvOyJ4h6FYMS7VHLQnIEeAV5ahv6sKYWx+1g1UwYup8h7+gPuoF+sW2hTScxi7PVaba2Jk/U8Og=="
-  "resolved" "https://registry.npmjs.org/@date-io/dayjs/-/dayjs-2.14.0.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@date-io/dayjs/-/dayjs-2.14.0.tgz"
   "version" "2.14.0"
   dependencies:
     "@date-io/core" "^2.14.0"
 
 "@date-io/luxon@^2.14.0":
   "integrity" "sha512-KmpBKkQFJ/YwZgVd0T3h+br/O0uL9ZdE7mn903VPAG2ZZncEmaUfUdYKFT7v7GyIKJ4KzCp379CRthEbxevEVg=="
-  "resolved" "https://registry.npmjs.org/@date-io/luxon/-/luxon-2.14.0.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@date-io/luxon/-/luxon-2.14.0.tgz"
   "version" "2.14.0"
   dependencies:
     "@date-io/core" "^2.14.0"
 
 "@date-io/moment@^2.14.0":
   "integrity" "sha512-VsoLXs94GsZ49ecWuvFbsa081zEv2xxG7d+izJsqGa2L8RPZLlwk27ANh87+SNnOUpp+qy2AoCAf0mx4XXhioA=="
-  "resolved" "https://registry.npmjs.org/@date-io/moment/-/moment-2.14.0.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@date-io/moment/-/moment-2.14.0.tgz"
   "version" "2.14.0"
   dependencies:
     "@date-io/core" "^2.14.0"
@@ -439,12 +439,39 @@
     "prop-types" "^15.8.1"
     "react-is" "^18.2.0"
 
+"@mui/base@5.0.0-alpha.90":
+  "integrity" "sha512-hNKwzr+RkiuGsGrakz8Q2i5ezr4Dz4b4Qsdipt9SiMrhuFAra/i501VSaEIzwec9LC4G+vtW4fE7yJBB0XaAYw=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@mui/base/-/base-5.0.0-alpha.90.tgz"
+  "version" "5.0.0-alpha.90"
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    "@emotion/is-prop-valid" "^1.1.3"
+    "@mui/types" "^7.1.4"
+    "@mui/utils" "^5.9.1"
+    "@popperjs/core" "^2.11.5"
+    "clsx" "^1.2.1"
+    "prop-types" "^15.8.1"
+    "react-is" "^18.2.0"
+
 "@mui/icons-material@^5.8.4":
   "integrity" "sha512-9Z/vyj2szvEhGWDvb+gG875bOGm8b8rlHBKOD1+nA3PcgC3fV6W1AU6pfOorPeBfH2X4mb9Boe97vHvaSndQvA=="
   "resolved" "https://registry.npmjs.org/@mui/icons-material/-/icons-material-5.8.4.tgz"
   "version" "5.8.4"
   dependencies:
     "@babel/runtime" "^7.17.2"
+
+"@mui/lab@^5.0.0-alpha.91":
+  "integrity" "sha512-46qnSPlK39hz5rtMjxHIkCeRzU+7/I27AyEI5mxtCCr2q4r4nC6IV2+2BhyM/FU09+v9tV5rByLZTkEmjy3dQQ=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@mui/lab/-/lab-5.0.0-alpha.91.tgz"
+  "version" "5.0.0-alpha.91"
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    "@mui/base" "5.0.0-alpha.90"
+    "@mui/system" "^5.9.1"
+    "@mui/utils" "^5.9.1"
+    "clsx" "^1.2.1"
+    "prop-types" "^15.8.1"
+    "react-is" "^18.2.0"
 
 "@mui/material@^5.0.0", "@mui/material@^5.4.1", "@mui/material@^5.9.0":
   "integrity" "sha512-KZN3QEeCtwSP1IRpDZ7KQghDX7tyxZojADRCn+UKnoq8HUGNMJm2XKdb7hy9/ybaSW4EXQSKXSGg1AjdfS7Cdg=="
@@ -463,13 +490,13 @@
     "react-is" "^18.2.0"
     "react-transition-group" "^4.4.2"
 
-"@mui/private-theming@^5.9.0":
-  "integrity" "sha512-t0ZsWxE/LvX5RH5azjx1esBHbIfD9zjnbSAYkpE59BPpkOrqAYDGoJguL2EPd9LaUb6COmBozmAwNenvI6RJRQ=="
-  "resolved" "https://registry.npmjs.org/@mui/private-theming/-/private-theming-5.9.0.tgz"
-  "version" "5.9.0"
+"@mui/private-theming@^5.9.1":
+  "integrity" "sha512-eIh2IZJInNTdgPLMo9cruzm8UDX5amBBxxsSoNre7lRj3wcsu3TG5OKjIbzkf4VxHHEhdPeNNQyt92k7L78u2A=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@mui/private-theming/-/private-theming-5.9.1.tgz"
+  "version" "5.9.1"
   dependencies:
     "@babel/runtime" "^7.17.2"
-    "@mui/utils" "^5.9.0"
+    "@mui/utils" "^5.9.1"
     "prop-types" "^15.8.1"
 
 "@mui/styled-engine-sc@^5.8.0":
@@ -489,16 +516,16 @@
     "csstype" "^3.1.0"
     "prop-types" "^15.8.1"
 
-"@mui/system@^5.4.1", "@mui/system@^5.9.0":
-  "integrity" "sha512-KLZDYMmT1usokEJH+raGTh1SbdOx4BVrT+wg8nRpKGNii2sfc3ntuJSKuv3Fu9oeC9xVFTnNBHXKrpJuxeDcqg=="
-  "resolved" "https://registry.npmjs.org/@mui/system/-/system-5.9.0.tgz"
-  "version" "5.9.0"
+"@mui/system@^5.4.1", "@mui/system@^5.9.0", "@mui/system@^5.9.1":
+  "integrity" "sha512-ZixTmc2+sYp++avoYJ38eM70nfwwudN06vYCU4kfwa4nQPiH+bhLYZnfYkcXRKiDR/hfT0dptbOOfQGZqBYczQ=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@mui/system/-/system-5.9.1.tgz"
+  "version" "5.9.1"
   dependencies:
     "@babel/runtime" "^7.17.2"
-    "@mui/private-theming" "^5.9.0"
+    "@mui/private-theming" "^5.9.1"
     "@mui/styled-engine" "^5.8.7"
     "@mui/types" "^7.1.4"
-    "@mui/utils" "^5.9.0"
+    "@mui/utils" "^5.9.1"
     "clsx" "^1.2.1"
     "csstype" "^3.1.0"
     "prop-types" "^15.8.1"
@@ -508,10 +535,10 @@
   "resolved" "https://registry.npmjs.org/@mui/types/-/types-7.1.4.tgz"
   "version" "7.1.4"
 
-"@mui/utils@^5.4.1", "@mui/utils@^5.9.0":
-  "integrity" "sha512-GAaiWP6zBC3RE1NHP9y1c1iKZh5s/nyKKqWxfTrw5lNQY5tWTh9/47F682FuiE5WT1o3h4w/LEkSSIZpMEDzrA=="
-  "resolved" "https://registry.npmjs.org/@mui/utils/-/utils-5.9.0.tgz"
-  "version" "5.9.0"
+"@mui/utils@^5.4.1", "@mui/utils@^5.9.0", "@mui/utils@^5.9.1":
+  "integrity" "sha512-8+4adOR3xusyJwvbnZxcjqcmbWvl7Og+260ZKIrSvwnFs0aLubL+8MhiceeDDGcmb0bTKxfUgRJ96j32Jb7P+A=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@mui/utils/-/utils-5.9.1.tgz"
+  "version" "5.9.1"
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@types/prop-types" "^15.7.5"
@@ -521,7 +548,7 @@
 
 "@mui/x-date-pickers@^5.0.0-beta.1":
   "integrity" "sha512-Vx/mxnCDTQ8a5tMcRpku49+YgDl91XS5FJ0ZjPWR7JQOW8EEurDmVreNESrrIugTzQhSUp4eJXdGmncwxzwI9A=="
-  "resolved" "https://registry.npmjs.org/@mui/x-date-pickers/-/x-date-pickers-5.0.0-beta.1.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@mui/x-date-pickers/-/x-date-pickers-5.0.0-beta.1.tgz"
   "version" "5.0.0-beta.1"
   dependencies:
     "@babel/runtime" "^7.18.6"
@@ -537,10 +564,10 @@
     "react-transition-group" "^4.4.2"
     "rifm" "^0.12.1"
 
-"@next/env@12.2.2":
-  "integrity" "sha512-BqDwE4gDl1F608TpnNxZqrCn6g48MBjvmWFEmeX5wEXDXh3IkAOw6ASKUgjT8H4OUePYFqghDFUss5ZhnbOUjw=="
-  "resolved" "https://registry.npmjs.org/@next/env/-/env-12.2.2.tgz"
-  "version" "12.2.2"
+"@next/env@12.2.3":
+  "integrity" "sha512-2lWKP5Xcvnor70NaaROZXBvU8z9mFReePCG8NhZw6NyNGnPvC+8s+Cre/63LAB1LKzWw/e9bZJnQUg0gYFRb2Q=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@next/env/-/env-12.2.3.tgz"
+  "version" "12.2.3"
 
 "@next/eslint-plugin-next@12.2.2":
   "integrity" "sha512-XOi0WzJhGH3Lk51SkSu9eZxF+IY1ZZhWcJTIGBycAbWU877IQa6+6KxMATWCOs7c+bmp6Sd8KywXJaDRxzu0JA=="
@@ -549,10 +576,10 @@
   dependencies:
     "glob" "7.1.7"
 
-"@next/swc-darwin-x64@12.2.2":
-  "integrity" "sha512-dztDtvfkhUqiqpXvrWVccfGhLe44yQ5tQ7B4tBfnsOR6vxzI9DNPHTlEOgRN9qDqTAcFyPxvg86mn4l8bB9Jcw=="
-  "resolved" "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-12.2.2.tgz"
-  "version" "12.2.2"
+"@next/swc-win32-x64-msvc@12.2.3":
+  "integrity" "sha512-huSNb98KSG77Kl96CoPgCwom28aamuUsPpRmn/4s9L0RNbbHVSkp9E6HA4yOAykZCEuWcdNsRLbVVuAbt8rtIw=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-12.2.3.tgz"
+  "version" "12.2.3"
 
 "@nodelib/fs.scandir@2.1.5":
   "integrity" "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="
@@ -585,10 +612,10 @@
   "resolved" "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz"
   "version" "1.1.4"
 
-"@swc/helpers@0.4.2":
-  "integrity" "sha512-556Az0VX7WR6UdoTn4htt/l3zPQ7bsQWK+HqdG4swV7beUCxo/BqmvbOpUkTIm/9ih86LIf1qsUnywNL3obGHw=="
-  "resolved" "https://registry.npmjs.org/@swc/helpers/-/helpers-0.4.2.tgz"
-  "version" "0.4.2"
+"@swc/helpers@0.4.3":
+  "integrity" "sha512-6JrF+fdUK2zbGpJIlN7G3v966PQjyx/dPt1T9km2wj+EUBqgrxCk3uX4Kct16MIm9gGxfKRcfax2hVf5jvlTzA=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/@swc/helpers/-/helpers-0.4.3.tgz"
+  "version" "0.4.3"
   dependencies:
     "tslib" "^2.4.0"
 
@@ -1025,7 +1052,7 @@
 
 "date-fns@^2.0.0", "date-fns@^2.25.0", "date-fns@^2.28.0":
   "integrity" "sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw=="
-  "resolved" "https://registry.npmjs.org/date-fns/-/date-fns-2.28.0.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/date-fns/-/date-fns-2.28.0.tgz"
   "version" "2.28.0"
 
 "debug@^2.6.9":
@@ -1935,9 +1962,9 @@
   "resolved" "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   "version" "2.1.2"
 
-"nanoid@^3.1.30":
+"nanoid@^3.3.4":
   "integrity" "sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw=="
-  "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/nanoid/-/nanoid-3.3.4.tgz"
   "version" "3.3.4"
 
 "natural-compare@^1.4.0":
@@ -1945,31 +1972,31 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next@12.2.2":
-  "integrity" "sha512-zAYFY45aBry/PlKONqtlloRFqU/We3zWYdn2NoGvDZkoYUYQSJC8WMcalS5C19MxbCZLUVCX7D7a6gTGgl2yLg=="
-  "resolved" "https://registry.npmjs.org/next/-/next-12.2.2.tgz"
-  "version" "12.2.2"
+"next@^12.2.3":
+  "integrity" "sha512-TA0tmSA6Dk6S6kfvCNbF7CWYW8468gZUxr/3/30z4KvAQbXnl2ASYZElVe7q/hBW/1F1ee0tSBlHa4/sn+ZIBw=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/next/-/next-12.2.3.tgz"
+  "version" "12.2.3"
   dependencies:
-    "@next/env" "12.2.2"
-    "@swc/helpers" "0.4.2"
+    "@next/env" "12.2.3"
+    "@swc/helpers" "0.4.3"
     "caniuse-lite" "^1.0.30001332"
-    "postcss" "8.4.5"
+    "postcss" "8.4.14"
     "styled-jsx" "5.0.2"
-    "use-sync-external-store" "1.1.0"
+    "use-sync-external-store" "1.2.0"
   optionalDependencies:
-    "@next/swc-android-arm-eabi" "12.2.2"
-    "@next/swc-android-arm64" "12.2.2"
-    "@next/swc-darwin-arm64" "12.2.2"
-    "@next/swc-darwin-x64" "12.2.2"
-    "@next/swc-freebsd-x64" "12.2.2"
-    "@next/swc-linux-arm-gnueabihf" "12.2.2"
-    "@next/swc-linux-arm64-gnu" "12.2.2"
-    "@next/swc-linux-arm64-musl" "12.2.2"
-    "@next/swc-linux-x64-gnu" "12.2.2"
-    "@next/swc-linux-x64-musl" "12.2.2"
-    "@next/swc-win32-arm64-msvc" "12.2.2"
-    "@next/swc-win32-ia32-msvc" "12.2.2"
-    "@next/swc-win32-x64-msvc" "12.2.2"
+    "@next/swc-android-arm-eabi" "12.2.3"
+    "@next/swc-android-arm64" "12.2.3"
+    "@next/swc-darwin-arm64" "12.2.3"
+    "@next/swc-darwin-x64" "12.2.3"
+    "@next/swc-freebsd-x64" "12.2.3"
+    "@next/swc-linux-arm-gnueabihf" "12.2.3"
+    "@next/swc-linux-arm64-gnu" "12.2.3"
+    "@next/swc-linux-arm64-musl" "12.2.3"
+    "@next/swc-linux-x64-gnu" "12.2.3"
+    "@next/swc-linux-x64-musl" "12.2.3"
+    "@next/swc-win32-arm64-msvc" "12.2.3"
+    "@next/swc-win32-ia32-msvc" "12.2.3"
+    "@next/swc-win32-x64-msvc" "12.2.3"
 
 "node-releases@^2.0.6":
   "integrity" "sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg=="
@@ -2131,14 +2158,14 @@
   "resolved" "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   "version" "4.2.0"
 
-"postcss@8.4.5":
-  "integrity" "sha512-jBDboWM8qpaqwkMwItqTQTiFikhs/67OYVvblFFTM7MrZjt6yMKd6r2kgXizEbTTljacm4NldIlZnhbjr84QYg=="
-  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.5.tgz"
-  "version" "8.4.5"
+"postcss@8.4.14":
+  "integrity" "sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/postcss/-/postcss-8.4.14.tgz"
+  "version" "8.4.14"
   dependencies:
-    "nanoid" "^3.1.30"
+    "nanoid" "^3.3.4"
     "picocolors" "^1.0.0"
-    "source-map-js" "^1.0.1"
+    "source-map-js" "^1.0.2"
 
 "prelude-ls@^1.2.1":
   "integrity" "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="
@@ -2253,7 +2280,7 @@
 
 "rifm@^0.12.1":
   "integrity" "sha512-OGA1Bitg/dSJtI/c4dh90svzaUPt228kzFsUkJbtA2c964IqEAwWXeL9ZJi86xWv3j5SMqRvGULl7bA6cK0Bvg=="
-  "resolved" "https://registry.npmjs.org/rifm/-/rifm-0.12.1.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/rifm/-/rifm-0.12.1.tgz"
   "version" "0.12.1"
 
 "rimraf@^3.0.2":
@@ -2325,9 +2352,9 @@
   "resolved" "https://registry.npmjs.org/slash/-/slash-3.0.0.tgz"
   "version" "3.0.0"
 
-"source-map-js@^1.0.1":
+"source-map-js@^1.0.2":
   "integrity" "sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw=="
-  "resolved" "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/source-map-js/-/source-map-js-1.0.2.tgz"
   "version" "1.0.2"
 
 "source-map@^0.5.7":
@@ -2402,7 +2429,7 @@
 
 "styled-jsx@5.0.2":
   "integrity" "sha512-LqPQrbBh3egD57NBcHET4qcgshPks+yblyhPlH2GY8oaDgKs8SK4C3dBh3oSJjgzJ3G5t1SYEZGHkP+QEpX9EQ=="
-  "resolved" "https://registry.npmjs.org/styled-jsx/-/styled-jsx-5.0.2.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/styled-jsx/-/styled-jsx-5.0.2.tgz"
   "version" "5.0.2"
 
 "stylis@4.0.13":
@@ -2470,7 +2497,7 @@
 
 "tslib@^2.4.0":
   "integrity" "sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ=="
-  "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/tslib/-/tslib-2.4.0.tgz"
   "version" "2.4.0"
 
 "tsutils@^3.21.0":
@@ -2522,15 +2549,10 @@
   dependencies:
     "punycode" "^2.1.0"
 
-"use-sync-external-store@^1.2.0":
+"use-sync-external-store@^1.2.0", "use-sync-external-store@1.2.0":
   "integrity" "sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA=="
-  "resolved" "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz"
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz"
   "version" "1.2.0"
-
-"use-sync-external-store@1.1.0":
-  "integrity" "sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ=="
-  "resolved" "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.1.0.tgz"
-  "version" "1.1.0"
 
 "v8-compile-cache@^2.0.3":
   "integrity" "sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA=="
@@ -2574,3 +2596,10 @@
   "integrity" "sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg=="
   "resolved" "https://registry.npmjs.org/yaml/-/yaml-1.10.2.tgz"
   "version" "1.10.2"
+
+"zustand@^4.0.0-rc.4":
+  "integrity" "sha512-BP35Rq40GBTKKtYyjLuZogzXGh289xqO8U8ivGIK43nRqURD2dEEImkUci1/jWRUz7J1OPJkUZuNySCho801gQ=="
+  "resolved" "http://nexus.archivagroup.it:8081/repository/npm-group/zustand/-/zustand-4.0.0-rc.4.tgz"
+  "version" "4.0.0-rc.4"
+  dependencies:
+    "use-sync-external-store" "1.2.0"
