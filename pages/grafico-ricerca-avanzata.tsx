@@ -19,8 +19,17 @@ const GraficoRicercaAvanzata = () => {
       <TabContext value={value}>
         <Box>
           {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}> */}
-          <TabList onChange={handleChange} aria-label="different form" centered>
-            <Tab disabled label="Cerca per : " value="1" />
+          <TabList
+            variant="fullWidth"
+            onChange={handleChange}
+            aria-label="different form"
+            centered
+          >
+            <Tab
+              sx={{ pointerEvents: 'none' }}
+              label="Cerca per : "
+              value="1"
+            />
             <Tab label="Stato" value="2" />
             <Tab label="Latitudine e Longitudine" value="3" />
           </TabList>

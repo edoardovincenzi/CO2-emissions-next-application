@@ -49,7 +49,7 @@ export const useGetLatLong_city = (city: string) => {
     ['useGetLatLong_city', city],
     async (): Promise<IGetLatLong | string> => {
       return await (
-        await axios.postForm(
+        await axios.post(
           `https://www.gps-longitudine-latitudine.it/main/checkgeocode`,
           bodyFormData
         )
