@@ -16,7 +16,6 @@ export const axiosCall = axios.create({
   baseURL: APIBASEURL,
   headers: {
     'Content-type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
   },
 });
 

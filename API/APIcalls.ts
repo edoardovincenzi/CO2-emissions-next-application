@@ -84,7 +84,13 @@ export const useGetLatLong_city = (city: string) => {
     async (): Promise<IGetLatLong | string> => {
       return await (
         await axios.get(
-          `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${process.env.NEXT_PUBLIC_API_KEY}&no_annotations=1&language=it`
+          `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${process.env.NEXT_PUBLIC_API_KEY}&no_annotations=1&language=it`,
+          {
+            headers: {
+              'Content-type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+          }
         )
       ).data;
     },
