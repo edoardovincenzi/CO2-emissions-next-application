@@ -3,16 +3,17 @@ export interface IErrorFields {
   latitudine: { IsError: boolean; textMessage: string };
   longitudine: { IsError: boolean; textMessage: string };
 }
+export interface Geometry {
+  lat: number;
+  lng: number;
+}
+
+export interface Result {
+  geometry: Geometry;
+}
+
 export interface IGetLatLong {
-  cacheid: string;
-  cachename: string;
-  cacheslug: string;
-  cachelat: string;
-  cachelon: string;
-  cacheutm: string;
-  cacheupdate: string;
-  locationlat: string;
-  locationlon: string;
+  results: Result[];
 }
 
 export interface ICityState {
@@ -23,19 +24,23 @@ export interface IAppStore {
   latitudine: number | null;
   longitudine: number | null;
   error: string | null;
+  dataAPI: IStatistics[];
+  errorDataAPI: string | null;
   populateLat: (latitudine: number | null) => void;
   populateLong: (longitudine: number | null) => void;
   populateError: (error: string | null) => void;
+  populatedataAPI: (newDataAPI: IStatistics[]) => void;
+  populateErrorDataAPI: (newError: string | null) => void;
 }
 
 export interface DateFrom {
-  dateFrom: Date | null;
-  setDateFrom: React.Dispatch<React.SetStateAction<Date | null>>;
+  dateFrom: Date;
+  setDateFrom: React.Dispatch<React.SetStateAction<Date>>;
 }
 
 export interface DateTo {
-  dateTo: Date | null;
-  setDateTo: React.Dispatch<React.SetStateAction<Date | null>>;
+  dateTo: Date;
+  setDateTo: React.Dispatch<React.SetStateAction<Date>>;
 }
 
 export interface IModal {
@@ -46,6 +51,18 @@ export interface IModal {
 export interface IDateFromTo {
   dateF: DateFrom;
   dateT: DateTo;
+}
+
+export type IIntervalData = 'day' | 'month' | 'year';
+
+export interface IIntervalDataState {
+  intervalData: IIntervalData;
+  setIntervalData: React.Dispatch<React.SetStateAction<IIntervalData>>;
+}
+export interface IDatePickerFromTo {
+  intervalDataState: IIntervalDataState;
+  dateFromTo: IDateFromTo;
+  errorFields: IErrorFields;
 }
 
 export interface ICrumbs {

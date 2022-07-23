@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
-import style from '../../../styles/GraficoRicercaAvanzata.module.css';
+import style from './FormSearchLatLong.module.css';
 import DatePickerFromTo from 'GenericComponents/DatePickerFromTo';
 import { formatDate } from '../../../utility';
 import { checkDates } from '../../../utility/checkDatas';
 import { errorFieldsInitial, useStore } from '../../../utility/costant';
-import { IErrorFields } from '../../../model';
+import { IErrorFields, IIntervalData } from '../../../model';
 import * as setError from '../../../utility/setErrorMessage';
 import FindLatLong from 'FindLatLong/FindLatLong';
 
 const FormSearchLatLong = () => {
-  const [dateFrom, setDateFrom] = useState<Date | null>(new Date());
-  const [dateTo, setDateTo] = useState<Date | null>(new Date());
+  const [dateFrom, setDateFrom] = useState<Date>(new Date());
+  const [dateTo, setDateTo] = useState<Date>(new Date());
+  const [intervalData, setIntervalData] =
+    React.useState<IIntervalData>('month');
   const latitudine = useRef<any>();
   const longitudine = useRef<any>();
   const storeLatitudine = useStore((state) => state.latitudine);
@@ -58,6 +60,10 @@ const FormSearchLatLong = () => {
           dateFromTo={{
             dateF: { dateFrom: dateFrom, setDateFrom: setDateFrom },
             dateT: { dateTo: dateTo, setDateTo: setDateTo },
+          }}
+          intervalDataState={{
+            intervalData: intervalData,
+            setIntervalData: setIntervalData,
           }}
           errorFields={errorFields}
         />

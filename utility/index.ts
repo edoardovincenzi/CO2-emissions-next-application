@@ -22,3 +22,10 @@ export function setErrorTimeout(
     setText('');
   }, time);
 }
+
+export function getYearMonthDay_FromData(data: Date) {
+  const day = data.getDay();
+  const month = data.getMonth() + 1;
+  const year = data.getFullYear();
+  return { day: day, month: month, year: year };
+}

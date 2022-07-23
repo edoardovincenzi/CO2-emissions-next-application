@@ -1,7 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { APIBASEURL } from '../constant';
-import { IAppStore, ICrumbs, IErrorFields } from '../model';
+import { IAppStore, ICrumbs, IErrorFields, IStatistics } from '../model';
 import create from 'zustand';
 
 export const queryClient = new QueryClient({
@@ -35,7 +35,12 @@ export const useStore = create<IAppStore>((set) => ({
   latitudine: null,
   longitudine: null,
   error: null,
+  dataAPI: [],
+  errorDataAPI: '',
   populateLat: (newLat: number | null) => set({ latitudine: newLat }),
   populateLong: (newLong: number | null) => set({ longitudine: newLong }),
   populateError: (newError: string | null) => set({ error: newError }),
+  populatedataAPI: (newDataAPI: IStatistics[]) => set({ dataAPI: newDataAPI }),
+  populateErrorDataAPI: (newError: string | null) =>
+    set({ errorDataAPI: newError }),
 }));
