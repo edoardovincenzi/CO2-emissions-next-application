@@ -37,10 +37,15 @@ export const useStore = create<IAppStore>((set) => ({
   error: null,
   dataAPI: [],
   errorDataAPI: '',
-  populateLat: (newLat: number | null) => set({ latitudine: newLat }),
-  populateLong: (newLong: number | null) => set({ longitudine: newLong }),
-  populateError: (newError: string | null) => set({ error: newError }),
-  populatedataAPI: (newDataAPI: IStatistics[]) => set({ dataAPI: newDataAPI }),
-  populateErrorDataAPI: (newError: string | null) =>
-    set({ errorDataAPI: newError }),
+  infoDataAPI: {
+    tab: '',
+    date: '',
+    filters: { interval: '', dateFrom: '', dateTo: '' },
+  },
+  populateLat: (newLat) => set({ latitudine: newLat }),
+  populateLong: (newLong) => set({ longitudine: newLong }),
+  populateError: (newError) => set({ error: newError }),
+  populateDataAPI: (newDataAPI) => set({ dataAPI: newDataAPI }),
+  populateErrorDataAPI: (newError) => set({ errorDataAPI: newError }),
+  populateInfoDataAPI: (newInfoDataAPI) => set({ infoDataAPI: newInfoDataAPI }),
 }));

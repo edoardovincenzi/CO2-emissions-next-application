@@ -20,8 +20,12 @@ const ModaleFindLatLong = ({ handleClose, open }: IModal) => {
   };
 
   if (cityState && data && typeof data !== 'string') {
-    useStore.getState().populateLat(Number(data.results[0].geometry.lat));
-    useStore.getState().populateLong(Number(data.results[0].geometry.lng));
+    useStore
+      .getState()
+      .populateLat(Number(data.results[0].geometry.lat.toFixed(0)));
+    useStore
+      .getState()
+      .populateLong(Number(data.results[0].geometry.lng.toFixed(0)));
     useStore.getState().populateError('');
     handleClose();
   } else if (cityState && data && typeof data === 'string') {

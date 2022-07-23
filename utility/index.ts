@@ -1,11 +1,27 @@
 import { Dispatch, SetStateAction } from 'react';
 
+export function formatDateWithTime(date: Date) {
+  return `${[
+    date.getFullYear(),
+    padTo2Digits(date.getMonth() + 1),
+    padTo2Digits(date.getDate()),
+  ].join('-')} ${[
+    padTo2Digits(date.getHours()),
+    padTo2Digits(date.getMinutes()),
+    padTo2Digits(date.getSeconds()),
+  ].join(':')}`;
+}
+
 export function formatDate(date: Date) {
   return [
     date.getFullYear(),
     padTo2Digits(date.getMonth() + 1),
     padTo2Digits(date.getDate()),
   ].join('-');
+}
+
+export function getSplitString(str: string, element: string) {
+  return str.split(element, 0);
 }
 
 function padTo2Digits(num: number) {

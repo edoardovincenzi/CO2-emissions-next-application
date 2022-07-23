@@ -2,16 +2,3 @@
   height: 100%;
   background-color: #dbd8f0;
 }
-
-.paperFlex {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.title {
-  color: black;
-  text-align: center;
-}

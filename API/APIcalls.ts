@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { axiosCall } from '../utility/costant';
 import { ICountries, IGetLatLong, IStatistics } from '../model';
 import axios from 'axios';
-import { getYearMonthDay_FromData } from '../utility';
+import { formatDate, getYearMonthDay_FromData } from '../utility';
 
 export const useGetCountries = () => {
   const { isLoading, data, error } = useQuery(
@@ -51,22 +51,14 @@ export const useGetDataAdvance_country_data_interval = (
   dateTo: Date,
   enabled_data: boolean
 ) => {
-  const {
-    day: dayFROM,
-    month: monthFROM,
-    year: yearFROM,
-  } = getYearMonthDay_FromData(dateFrom);
-  const {
-    day: dayTO,
-    month: monthTO,
-    year: yearTO,
-  } = getYearMonthDay_FromData(dateTo);
-  const { isLoading, error, data } = useQuery(
+  const dateFromFormat = formatDate(dateFrom);
+  const dateToFromat = formatDate(dateTo);
+  const { isLoading, error, data, isFetching } = useQuery(
     ['useGetLastSixMonths_country', country, inteval, dateFrom, dateTo],
     async (): Promise<IStatistics[]> => {
       return await (
         await axiosCall.get(
-          `carbonmonoxide/statistics.json?country=${country}&interval=${inteval}&begin=${yearFROM}-${monthFROM}-${dayFROM}&end=${yearTO}-${monthTO}-${dayTO}&limit=100&offset=0`
+          `carbonmonoxide/statistics.json?country=${country}&interval=${inteval}&begin=${dateFromFormat}&end=${dateToFromat}&limit=100&offset=0`
         )
       ).data;
     },
@@ -75,7 +67,38 @@ export const useGetDataAdvance_country_data_interval = (
     }
   );
 
-  return { isLoading, data, error };
+  return { isLoading, data, error, isFetching };
+};
+
+export const useGetDataAdvance_lat_long_data_interval = (
+  lat: number,
+  long: number,
+  inteval: IIntervalData,
+  dateFrom: Date,
+  dateTo: Date,
+  enabled_data: boolean
+) => {
+  const dateFromFormat = formatDate(dateFrom);
+  const dateToFromat = formatDate(dateTo);
+  const { isLoading, error, data, isFetching } = useQuery(
+    ['useGetLastSixMonths_country', lat, long, inteval, dateFrom, dateTo],
+    async (): Promise<IStatistics[]> => {
+      return await (
+        await axiosCall.get(
+          `carbonmonoxide/statistics.json?point=${lat.toFixed(
+            0
+          )}&point=${long.toFixed(
+            0
+          )}&interval=${inteval}&begin=${dateFromFormat}&end=${dateToFromat}&limit=100&offset=0`
+        )
+      ).data;
+    },
+    {
+      enabled: enabled_data,
+    }
+  );
+
+  return { isLoading, data, error, isFetching };
 };
 
 export const useGetLatLong_city = (city: string) => {

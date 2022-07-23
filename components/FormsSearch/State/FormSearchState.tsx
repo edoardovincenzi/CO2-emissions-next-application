@@ -1,3 +1,4 @@
+//#region import
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -8,11 +9,14 @@ import {
   useGetCountries,
   useGetDataAdvance_country_data_interval,
 } from '../../../API/APIcalls';
-import { formatDate } from '../../../utility';
+import { formatDate, formatDateWithTime } from '../../../utility';
 import { checkDates } from '../../../utility/checkDatas';
 import { errorFieldsInitial, useStore } from '../../../utility/costant';
 import { IErrorFields, IIntervalData, IStatistics } from '../../../model';
 import * as setError from '../../../utility/setErrorMessage';
+import { LoadingButton } from '@mui/lab';
+import SaveIcon from '@mui/icons-material/Save';
+//#endregion
 
 const FormSearchState = () => {
   const [dateFrom, setDateFrom] = useState<Date>(new Date());
@@ -25,15 +29,26 @@ const FormSearchState = () => {
   const [errorFields, setErrorFields] =
     useState<IErrorFields>(errorFieldsInitial);
 
-  const { isLoading, data, error } = useGetDataAdvance_country_data_interval(
-    autocompleteValue,
-    intervalData,
-    dateFrom,
-    dateTo,
-    enabled_data
-  );
+  const { isLoading, data, error, isFetching } =
+    useGetDataAdvance_country_data_interval(
+      autocompleteValue,
+      intervalData,
+      dateFrom,
+      dateTo,
+      enabled_data
+    );
   if (enabled_data && data) {
-    useStore.getState().populatedataAPI(data);
+    useStore.getState().populateDataAPI(data);
+    useStore.getState().populateInfoDataAPI({
+      tab: 'Stato',
+      date: formatDateWithTime(new Date()),
+      filters: {
+        interval: intervalData,
+        dateFrom: formatDate(dateFrom),
+        dateTo: formatDate(dateTo),
+        state: autocompleteValue,
+      },
+    });
     setEnabled_data(false);
   }
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -99,9 +114,20 @@ const FormSearchState = () => {
           }
         }}
       />
-      <Button variant="contained" type="submit">
-        Cerca
-      </Button>
+      {isFetching ? (
+        <LoadingButton
+          loading
+          loadingPosition="start"
+          startIcon={<SaveIcon />}
+          variant="outlined"
+        >
+          Cerca
+        </LoadingButton>
+      ) : (
+        <Button variant="contained" type="submit">
+          Cerca
+        </Button>
+      )}
     </form>
   );
 };

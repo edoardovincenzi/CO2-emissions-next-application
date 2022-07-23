@@ -1,4 +1,6 @@
+import { formatDate } from '.';
 import { IErrorFields } from '../model';
+import { checkDates } from './checkDatas';
 
 export function getDatesError(fieldError: IErrorFields) {
   return {
@@ -58,4 +60,43 @@ export function getLongNoError(fieldError: IErrorFields) {
       textMessage: '',
     },
   };
+}
+
+export function allNoError(fieldError: IErrorFields) {
+  fieldError = getDatesNoError(fieldError);
+  fieldError = getLatNoError(fieldError);
+  fieldError = getLongNoError(fieldError);
+  return fieldError;
+}
+
+export function checkDateNoError(dateFrom: Date, dateTo: Date) {
+  return !(
+    dateFrom &&
+    dateTo &&
+    checkDates(new Date(formatDate(dateFrom)), new Date(formatDate(dateTo)))
+  );
+}
+
+export function setAllFieldsError(
+  dateFrom: Date,
+  dateTo: Date,
+  lat: number,
+  long: number,
+  fieldError: IErrorFields
+) {
+  fieldError = !(
+    dateFrom &&
+    dateTo &&
+    checkDates(new Date(formatDate(dateFrom)), new Date(formatDate(dateTo)))
+  )
+    ? getDatesError(fieldError)
+    : getDatesNoError(fieldError);
+
+  fieldError = isNaN(lat) ? getLatError(fieldError) : getLatNoError(fieldError);
+
+  fieldError = isNaN(long)
+    ? getLongError(fieldError)
+    : getLongNoError(fieldError);
+
+  return fieldError;
 }

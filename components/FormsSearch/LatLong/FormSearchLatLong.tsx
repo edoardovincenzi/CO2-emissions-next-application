@@ -3,16 +3,19 @@ import { Box, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import style from './FormSearchLatLong.module.css';
 import DatePickerFromTo from 'GenericComponents/DatePickerFromTo';
-import { formatDate } from '../../../utility';
-import { checkDates } from '../../../utility/checkDatas';
+import { formatDate, formatDateWithTime } from '../../../utility';
 import { errorFieldsInitial, useStore } from '../../../utility/costant';
 import { IErrorFields, IIntervalData } from '../../../model';
 import * as setError from '../../../utility/setErrorMessage';
 import FindLatLong from 'FindLatLong/FindLatLong';
+import { useGetDataAdvance_lat_long_data_interval } from '../../../API/APIcalls';
+import { LoadingButton } from '@mui/lab';
+import SaveIcon from '@mui/icons-material/Save';
 
 const FormSearchLatLong = () => {
   const [dateFrom, setDateFrom] = useState<Date>(new Date());
   const [dateTo, setDateTo] = useState<Date>(new Date());
+  const [enabled_data, setEnabled_data] = React.useState(false);
   const [intervalData, setIntervalData] =
     React.useState<IIntervalData>('month');
   const latitudine = useRef<any>();
@@ -20,41 +23,66 @@ const FormSearchLatLong = () => {
   const storeLatitudine = useStore((state) => state.latitudine);
   const storeLongitudine = useStore((state) => state.longitudine);
 
+  const { isLoading, data, error, isFetching } =
+    useGetDataAdvance_lat_long_data_interval(
+      Number(latitudine.current?.value),
+      Number(longitudine.current?.value),
+      intervalData,
+      dateFrom,
+      dateTo,
+      enabled_data
+    );
+
+  if (enabled_data && data) {
+    useStore.getState().populateDataAPI(data);
+    useStore.getState().populateInfoDataAPI({
+      tab: 'Latitudine e longitudine',
+      date: formatDateWithTime(new Date()),
+      filters: {
+        interval: intervalData,
+        dateFrom: formatDate(dateFrom),
+        dateTo: formatDate(dateTo),
+        lat: latitudine.current?.value,
+        long: longitudine.current?.value,
+      },
+    });
+    setEnabled_data(false);
+  }
+
   useEffect(() => {
     latitudine.current.value = storeLatitudine;
     longitudine.current.value = storeLongitudine;
   }, [storeLatitudine, storeLongitudine]);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit = () => {
     let fieldError = errorFieldsInitial;
-    fieldError = !(
-      dateFrom &&
-      dateTo &&
-      checkDates(new Date(formatDate(dateFrom)), new Date(formatDate(dateTo)))
-    )
-      ? setError.getDatesError(fieldError)
-      : setError.getDatesNoError(fieldError);
-
-    fieldError = isNaN(Number(latitudine.current?.value))
-      ? setError.getLatError(fieldError)
-      : setError.getLatNoError(fieldError);
-
-    fieldError = isNaN(Number(longitudine.current?.value))
-      ? setError.getLongError(fieldError)
-      : setError.getLongNoError(fieldError);
-
-    setErrorFields({ ...errorFields, ...fieldError });
-
-    useStore.getState().populateLat(null);
-    useStore.getState().populateLong(null);
+    if (
+      !setError.checkDateNoError(dateFrom, dateTo) &&
+      !isNaN(Number(latitudine.current?.value)) &&
+      !isNaN(Number(longitudine.current?.value))
+    ) {
+      fieldError = setError.allNoError(fieldError);
+      // useStore.getState().populateLat(null);
+      // useStore.getState().populateLong(null);
+      setEnabled_data(true);
+      setErrorFields({ ...errorFields, ...fieldError });
+    } else {
+      fieldError = setError.setAllFieldsError(
+        dateFrom,
+        dateTo,
+        Number(latitudine.current?.value),
+        Number(longitudine.current?.value),
+        fieldError
+      );
+      setErrorFields({ ...errorFields, ...fieldError });
+    }
   };
 
   const [errorFields, setErrorFields] =
     useState<IErrorFields>(errorFieldsInitial);
 
   return (
-    <form className={style.form} onSubmit={onSubmit}>
+    <Box className={style.form}>
       <div className={style.box}>
         <DatePickerFromTo
           dateFromTo={{
@@ -98,10 +126,21 @@ const FormSearchLatLong = () => {
           }}
         />
       </Box>
-      <Button variant="contained" type="submit">
-        Cerca
-      </Button>
-    </form>
+      {isFetching ? (
+        <LoadingButton
+          loading
+          loadingPosition="start"
+          startIcon={<SaveIcon />}
+          variant="outlined"
+        >
+          Cerca
+        </LoadingButton>
+      ) : (
+        <Button variant="contained" onClick={onSubmit}>
+          Cerca
+        </Button>
+      )}
+    </Box>
   );
 };
 

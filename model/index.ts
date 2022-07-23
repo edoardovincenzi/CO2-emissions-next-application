@@ -20,17 +20,34 @@ export interface ICityState {
   city: string;
   search: boolean;
 }
+
+export interface IFilters {
+  interval: string;
+  dateFrom: string;
+  dateTo: string;
+  state?: string;
+  lat?: number;
+  long?: number;
+}
+
+export interface IInfoDataAPI {
+  tab: string;
+  date: string;
+  filters: IFilters;
+}
 export interface IAppStore {
   latitudine: number | null;
   longitudine: number | null;
   error: string | null;
   dataAPI: IStatistics[];
   errorDataAPI: string | null;
+  infoDataAPI: IInfoDataAPI;
   populateLat: (latitudine: number | null) => void;
   populateLong: (longitudine: number | null) => void;
   populateError: (error: string | null) => void;
-  populatedataAPI: (newDataAPI: IStatistics[]) => void;
+  populateDataAPI: (newDataAPI: IStatistics[]) => void;
   populateErrorDataAPI: (newError: string | null) => void;
+  populateInfoDataAPI: (newInfoDataAPI: IInfoDataAPI) => void;
 }
 
 export interface DateFrom {
