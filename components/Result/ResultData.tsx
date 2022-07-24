@@ -22,7 +22,9 @@ const ResultData = () => {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel-content"
               id="panel-content"
-              sx={{ justifyContent: 'center' }}
+              sx={{
+                '& .MuiAccordionSummary-content': { justifyContent: 'center' },
+              }}
             >
               <Typography>
                 Dato che va dal{' '}
@@ -45,17 +47,17 @@ const ResultData = () => {
                 }}
               >
                 <Typography>
-                  Media emissioni CO2 :
+                  Media emissioni CO2:{' '}
                   <strong className={styles.strong}>
                     {item.value.average}
                   </strong>
                 </Typography>
                 <Typography>
-                  Massime emissioni CO2 :
+                  Massime emissioni CO2:{' '}
                   <strong style={{}}>{item.value.max}</strong>
                 </Typography>
                 <Typography>
-                  Minime emissioni CO2 :
+                  Minime emissioni CO2:{' '}
                   <strong className={styles.strong}>{item.value.min}</strong>
                 </Typography>
               </Box>

@@ -39,7 +39,7 @@ const VerticalBar = ({ data }: { data: IStatistics[] }) => {
         data: labels.map((month: string, index: number) => {
           return clearData[index];
         }),
-        backgroundColor: 'rgb(86, 203, 249, 0.5)',
+        backgroundColor: '#1976d2',
       },
     ],
   };

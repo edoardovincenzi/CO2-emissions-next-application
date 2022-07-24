@@ -1,8 +1,28 @@
 .footer {
-  bottom: 5px;
-  position: fixed;
   text-align: center;
-  color: black;
-  left: 50%;
-  transform: translate(-50%);
+  background-color: #1976d2;
+  width: 100vw;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer > * {
+  color: white;
+}
+
+.footerLink {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.footerLink > * {
+  color: white;
+}
+
+.divLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

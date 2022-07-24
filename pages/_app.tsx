@@ -21,12 +21,20 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <StyledEngineProvider injectFirst>
         <QueryClientProvider client={queryClient}>
-          <Header />
-          <BasicBreadcrumbs crumbs={array} />
-          <Container>
-            <Component {...pageProps} />
-          </Container>
-          <Footer />
+          <div
+            style={{
+              minHeight: '100vh',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Header />
+            <BasicBreadcrumbs crumbs={array} />
+            <Container>
+              <Component {...pageProps} />
+            </Container>
+            <Footer />
+          </div>
         </QueryClientProvider>
       </StyledEngineProvider>
     </>

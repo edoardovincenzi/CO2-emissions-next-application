@@ -20,7 +20,9 @@ const FindLatLong = () => {
     <Box sx={{ mb: 2 }}>
       <Box className={styles.box}>
         <Box className={styles.box}>
-          <p>Non conosci la latitudine e la longitudine della tua città?</p>
+          <p style={{ fontSize: '12px' }}>
+            Non conosci la latitudine e la longitudine della tua città?
+          </p>
           <Button variant="outlined" onClick={handleOpen}>
             Premi qui
           </Button>
@@ -31,7 +33,7 @@ const FindLatLong = () => {
         <Box>
           <p
             style={{ textAlign: 'center', fontSize: '12px' }}
-          >{`Città trovata premendo: ${cityFounded}`}</p>
+          >{`Città trovata premendo: \n${cityFounded}`}</p>
           <p
             style={{ textAlign: 'center', fontSize: '12px' }}
           >{`con latitudine: ${lat} e longitudine: ${long}`}</p>

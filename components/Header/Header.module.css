@@ -1,7 +1,7 @@
 .navBar {
   background-color: #1976d2;
   width: 100vw;
-  height: 10vh;
+  padding: 2rem;
 }
 
 .container {
