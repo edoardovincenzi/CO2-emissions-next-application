@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           >
             <Header />
             <BasicBreadcrumbs crumbs={array} />
-            <Container sx={{ mb: 3 }}>
+            <Container sx={{ mb: 4 }}>
               <Component {...pageProps} />
             </Container>
             <Footer />
