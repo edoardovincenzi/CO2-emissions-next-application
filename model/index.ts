@@ -10,10 +10,12 @@ export interface Geometry {
 
 export interface Result {
   geometry: Geometry;
+  formatted: string;
 }
 
 export interface IGetLatLong {
   results: Result[];
+  total_results: number;
 }
 
 export interface ICityState {
@@ -36,12 +38,14 @@ export interface IInfoDataAPI {
   filters: IFilters;
 }
 export interface IAppStore {
+  cityFounded: string;
   latitudine: number | null;
   longitudine: number | null;
   error: string | null;
   dataAPI: IStatistics[];
   errorDataAPI: string | null;
   infoDataAPI: IInfoDataAPI;
+  populateCityFounded: (newCityFounded: string) => void;
   populateLat: (latitudine: number | null) => void;
   populateLong: (longitudine: number | null) => void;
   populateError: (error: string | null) => void;

@@ -19,16 +19,17 @@ const ModaleFindLatLong = ({ handleClose, open }: IModal) => {
     setCityState(city.current?.value ?? '');
   };
 
-  if (cityState && data && typeof data !== 'string') {
+  if (cityState && data && data.total_results !== 0) {
     useStore
       .getState()
       .populateLat(Number(data.results[0].geometry.lat.toFixed(0)));
     useStore
       .getState()
       .populateLong(Number(data.results[0].geometry.lng.toFixed(0)));
+    useStore.getState().populateCityFounded(data.results[0].formatted);
     useStore.getState().populateError('');
     handleClose();
-  } else if (cityState && data && typeof data === 'string') {
+  } else if (cityState && data && data.total_results === 0) {
     useStore.getState().populateError('Città non trovata');
   } else if (cityState && error) {
     useStore.getState().populateError('Errore durante la chiamata al server');

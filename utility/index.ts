@@ -21,7 +21,7 @@ export function formatDate(date: Date) {
 }
 
 export function getSplitString(str: string, element: string) {
-  return str.split(element, 0);
+  return str.split(element)[0];
 }
 
 function padTo2Digits(num: number) {

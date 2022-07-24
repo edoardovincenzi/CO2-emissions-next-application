@@ -1,6 +1,4 @@
 import { IIntervalData } from './../model/index';
-import { useEffect, useState } from 'react';
-import { APIBASEURL } from '../constant';
 import { useQuery } from '@tanstack/react-query';
 import { axiosCall } from '../utility/costant';
 import { ICountries, IGetLatLong, IStatistics } from '../model';
@@ -104,7 +102,7 @@ export const useGetDataAdvance_lat_long_data_interval = (
 export const useGetLatLong_city = (city: string) => {
   const { isLoading, error, data, isFetching } = useQuery(
     ['useGetLatLong_city', city],
-    async (): Promise<IGetLatLong | string> => {
+    async (): Promise<IGetLatLong> => {
       return await (
         await axios.get(
           `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${process.env.NEXT_PUBLIC_API_KEY}&no_annotations=1&language=it`,

@@ -43,7 +43,7 @@ const DatePickerFromTo = ({
           <MenuItem value={'year'}>Anno</MenuItem>
         </Select>
       </FormControl>
-      <Box sx={{ mt: 1 }}>
+      <Box sx={{ mt: 1, display: 'flex' }}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             disableFuture

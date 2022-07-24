@@ -32,6 +32,7 @@ export const errorFieldsInitial: IErrorFields = {
 };
 
 export const useStore = create<IAppStore>((set) => ({
+  cityFounded: '',
   latitudine: null,
   longitudine: null,
   error: null,
@@ -42,6 +43,7 @@ export const useStore = create<IAppStore>((set) => ({
     date: '',
     filters: { interval: '', dateFrom: '', dateTo: '' },
   },
+  populateCityFounded: (newCityFounded) => set({ cityFounded: newCityFounded }),
   populateLat: (newLat) => set({ latitudine: newLat }),
   populateLong: (newLong) => set({ longitudine: newLong }),
   populateError: (newError) => set({ error: newError }),

@@ -1,0 +1,23 @@
+.paperBasic {
+  height: 100%;
+  background-color: #dbd8f0;
+}
+
+.paperFlex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.accordion {
+  border-radius: 8px;
+  background-color: #dbd8f0;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.strong {
+  font-size: 16px;
+}

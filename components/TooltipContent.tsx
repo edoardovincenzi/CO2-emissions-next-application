@@ -4,7 +4,7 @@ import { IFilters } from '../model';
 
 const TooltipContent = ({ info }: { info: IFilters }) => {
   return (
-    <div className="prova">
+    <div>
       <Typography variant="h5">Filtri utilizzati:</Typography>
       {info.interval && <p>{`Intervallo: ${info.interval}`}</p>}
       {info.dateFrom && <p>{`Data da: ${info.dateFrom}`}</p>}
