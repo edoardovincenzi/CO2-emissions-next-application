@@ -6,7 +6,7 @@ import Footer from '../components/Footer/Footer';
 import { Container, StyledEngineProvider } from '@mui/material';
 import BasicBreadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { array, queryClient } from '../utility/costant';
+import { array, queryClient } from '../utility/initialValue';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           >
             <Header />
             <BasicBreadcrumbs crumbs={array} />
-            <Container sx={{ mb: 4 }}>
+            <Container sx={{ mb: 'auto', mt: 'auto' }}>
               <Component {...pageProps} />
             </Container>
             <Footer />

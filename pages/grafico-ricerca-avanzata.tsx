@@ -7,12 +7,10 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { FormSearchState, FormSearchLatLong } from 'FormsSearch';
 import styles from '../styles/GraficoRicercaAvanzata.module.css';
-import { useStore } from '../utility/costant';
 import Result from 'Result/Result';
 
 const GraficoRicercaAvanzata = () => {
   const [value, setValue] = useState('2');
-  const infoDataAPI = useStore((states) => states.infoDataAPI);
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -46,9 +44,7 @@ const GraficoRicercaAvanzata = () => {
           </TabPanel>
         </TabContext>
       </Paper>
-      {infoDataAPI.tab && infoDataAPI.date && (
-        <Result infoDataAPI={infoDataAPI} />
-      )}
+      <Result />
     </>
   );
 };

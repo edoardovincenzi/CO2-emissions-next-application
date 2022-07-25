@@ -6,7 +6,7 @@ import Link from 'next/link';
 const NavBar = () => {
   return (
     <div className={styles.navBar}>
-      <Container fixed className={styles.container}>
+      <Container fixed className={`flex_row_center ${styles.container}`}>
         <Link href="/" passHref>
           <Typography style={{ cursor: 'pointer' }} variant="h4">
             Emissione di CO2

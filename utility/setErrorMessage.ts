@@ -1,6 +1,5 @@
-import { formatDate } from '.';
+import { checkDates, formatDate } from '.';
 import { IErrorFields } from '../model';
-import { checkDates } from './checkDatas';
 
 export function getDatesError(fieldError: IErrorFields) {
   return {

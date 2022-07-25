@@ -1,14 +1,14 @@
 import { IIntervalData } from './../model/index';
 import { useQuery } from '@tanstack/react-query';
-import { axiosCall } from '../utility/costant';
-import { ICountries, IGetLatLong, IStatistics } from '../model';
+import { axiosCall } from '../utility/initialValue';
+import { IGetLatLong, IStatistics } from '../model';
 import axios from 'axios';
-import { formatDate, getYearMonthDay_FromData } from '../utility';
+import { formatDate } from '../utility';
 
 export const useGetCountries = () => {
   const { isLoading, data, error } = useQuery(
     ['useGetCountries'],
-    async (): Promise<ICountries> => {
+    async (): Promise<any> => {
       return await (
         await axiosCall.get(`countries.json`)
       ).data;

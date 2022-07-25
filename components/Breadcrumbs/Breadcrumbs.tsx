@@ -27,7 +27,7 @@ export default function BasicBreadcrumbs({ crumbs }: { crumbs: ICrumbs[] }) {
           })}
         </Breadcrumbs>
       </div>
-      <Divider sx={{ mb: 2 }} />
+      <Divider />
     </>
   );
 }

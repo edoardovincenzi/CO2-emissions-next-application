@@ -3,14 +3,6 @@
   background-color: #dbd8f0;
 }
 
-.paperFlex {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
 .accordion {
   border-radius: 8px;
   background-color: #dbd8f0;

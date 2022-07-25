@@ -20,9 +20,3 @@
 .footerLink > * {
   color: white;
 }
-
-.divLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import styles from './FindLatLong.module.css';
 import ModaleFindLatLong from './ModaleFindLatLong/ModaleFindLatLong';
-import { useStore } from '../../utility/costant';
+import { useStore } from '../../../../utility/initialValue';
 
 const FindLatLong = () => {
   const [open, setOpen] = React.useState(false);
@@ -18,9 +18,9 @@ const FindLatLong = () => {
 
   return (
     <Box sx={{ mb: 2 }}>
-      <Box className={styles.box}>
-        <Box className={styles.box}>
-          <p style={{ fontSize: '12px' }}>
+      <Box className={`flex_row_center ${styles.box}`}>
+        <Box className={`flex_row_center ${styles.box}`}>
+          <p className={styles.box_p}>
             Non conosci la latitudine e la longitudine della tua città?
           </p>
           <Button variant="outlined" onClick={handleOpen}>
@@ -32,10 +32,10 @@ const FindLatLong = () => {
       {cityFounded && (
         <Box>
           <p
-            style={{ textAlign: 'center', fontSize: '12px' }}
+            className={styles.box_p}
           >{`Città trovata premendo: \n${cityFounded}`}</p>
           <p
-            style={{ textAlign: 'center', fontSize: '12px' }}
+            className={styles.box_p}
           >{`con latitudine: ${lat} e longitudine: ${long}`}</p>
         </Box>
       )}

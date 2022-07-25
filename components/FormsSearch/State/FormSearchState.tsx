@@ -1,22 +1,19 @@
-//#region import
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
-import style from './FormSearchState.module.css';
-import DatePickerFromTo from 'GenericComponents/DatePickerFromTo';
+import styles from './FormSearchState.module.css';
+import DatePickerFromTo from 'DatePickerFromTo';
 import {
   useGetCountries,
   useGetDataAdvance_country_data_interval,
 } from '../../../API/APIcalls';
-import { formatDate, formatDateWithTime } from '../../../utility';
-import { checkDates } from '../../../utility/checkDatas';
-import { errorFieldsInitial, useStore } from '../../../utility/costant';
+import { checkDates, formatDate, formatDateWithTime } from '../../../utility';
+import { errorFieldsInitial, useStore } from '../../../utility/initialValue';
 import { IErrorFields, IIntervalData, IStatistics } from '../../../model';
 import * as setError from '../../../utility/setErrorMessage';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
-//#endregion
 
 const FormSearchState = () => {
   const [dateFrom, setDateFrom] = useState<Date>(new Date());
@@ -29,14 +26,13 @@ const FormSearchState = () => {
   const [errorFields, setErrorFields] =
     useState<IErrorFields>(errorFieldsInitial);
 
-  const { isLoading, data, error, isFetching } =
-    useGetDataAdvance_country_data_interval(
-      autocompleteValue,
-      intervalData,
-      dateFrom,
-      dateTo,
-      enabled_data
-    );
+  const { data, isFetching } = useGetDataAdvance_country_data_interval(
+    autocompleteValue,
+    intervalData,
+    dateFrom,
+    dateTo,
+    enabled_data
+  );
   if (enabled_data && data) {
     useStore.getState().populateDataAPI(data);
     useStore.getState().populateInfoDataAPI({
@@ -75,8 +71,8 @@ const FormSearchState = () => {
     [];
 
   return (
-    <form className={style.form} onSubmit={onSubmit}>
-      <div className={style.box}>
+    <form className={styles.form} onSubmit={onSubmit}>
+      <div className="flex_row_center_w100">
         <DatePickerFromTo
           dateFromTo={{
             dateF: { dateFrom: dateFrom, setDateFrom: setDateFrom },
@@ -93,8 +89,8 @@ const FormSearchState = () => {
         disablePortal
         id="combo-box-demo"
         options={dataArrayValue}
+        className={styles.autocomplete}
         sx={{
-          width: 300,
           mb: 1,
         }}
         renderInput={(params) => (

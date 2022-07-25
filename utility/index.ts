@@ -45,3 +45,7 @@ export function getYearMonthDay_FromData(data: Date) {
   const year = data.getFullYear();
   return { day: day, month: month, year: year };
 }
+
+export function checkDates(dateFrom: Date, dateTo: Date) {
+  return dateTo.valueOf() - dateFrom.valueOf() >= 0;
+}

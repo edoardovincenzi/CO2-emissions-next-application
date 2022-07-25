@@ -6,11 +6,4 @@
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
-  padding: 1rem;
-}
-
-.box {
-  display: flex;
-  justify-content: center;
-  width: 100%;
 }

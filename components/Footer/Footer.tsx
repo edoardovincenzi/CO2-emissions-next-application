@@ -9,13 +9,13 @@ const Footer = () => {
       <p>Esercizio di Edoardo Vincenzi</p>
       <div className={styles.footerLink}>
         <Link href="https://edoardovincenzi.netlify.app/">
-          <div className={styles.divLink}>
+          <div className="flex_row_center">
             <WebAssetIcon />
             <p>Sito web</p>
           </div>
         </Link>
         <Link href="https://github.com/edoardovincenzi">
-          <div className={styles.divLink}>
+          <div className="flex_row_center">
             <GitHubIcon />
             <p>GitHub</p>
           </div>

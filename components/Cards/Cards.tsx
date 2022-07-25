@@ -9,9 +9,12 @@ const Cards = ({ item }: { item: [string, string][] }) => {
       <LinkMUI
         underline="none"
         sx={{ width: '100%' }}
-        className={styles.cardPaper}
+        className={`flex_column_center ${styles.cardPaper}`}
       >
-        <Paper elevation={3} className={styles.cardPaper}>
+        <Paper
+          elevation={3}
+          className={`flex_column_center ${styles.cardPaper}`}
+        >
           {`[${item[0]}] ${item[1]}`}
         </Paper>
       </LinkMUI>

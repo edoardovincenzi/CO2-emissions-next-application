@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import style from './FormSearchLatLong.module.css';
-import DatePickerFromTo from 'GenericComponents/DatePickerFromTo';
+import DatePickerFromTo from 'DatePickerFromTo';
 import { formatDate, formatDateWithTime } from '../../../utility';
-import { errorFieldsInitial, useStore } from '../../../utility/costant';
+import { errorFieldsInitial, useStore } from '../../../utility/initialValue';
 import { IErrorFields, IIntervalData } from '../../../model';
 import * as setError from '../../../utility/setErrorMessage';
-import FindLatLong from 'FindLatLong/FindLatLong';
 import { useGetDataAdvance_lat_long_data_interval } from '../../../API/APIcalls';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
+import FindLatLong from './FindLatLong/FindLatLong';
 
 const FormSearchLatLong = () => {
   const [dateFrom, setDateFrom] = useState<Date>(new Date());
@@ -23,27 +23,28 @@ const FormSearchLatLong = () => {
   const storeLatitudine = useStore((state) => state.latitudine);
   const storeLongitudine = useStore((state) => state.longitudine);
 
-  const { isLoading, data, error, isFetching } =
-    useGetDataAdvance_lat_long_data_interval(
-      Number(latitudine.current?.value),
-      Number(longitudine.current?.value),
-      intervalData,
-      dateFrom,
-      dateTo,
-      enabled_data
-    );
+  const { data, isFetching } = useGetDataAdvance_lat_long_data_interval(
+    Number(latitudine.current?.value),
+    Number(longitudine.current?.value),
+    intervalData,
+    dateFrom,
+    dateTo,
+    enabled_data
+  );
 
   if (enabled_data && data) {
-    useStore.getState().populateDataAPI(data);
-    useStore.getState().populateInfoDataAPI({
-      tab: 'Latitudine e longitudine',
-      date: formatDateWithTime(new Date()),
-      filters: {
-        interval: intervalData,
-        dateFrom: formatDate(dateFrom),
-        dateTo: formatDate(dateTo),
-        lat: latitudine.current?.value,
-        long: longitudine.current?.value,
+    useStore.getState().populateDataAPI({
+      data,
+      info: {
+        tab: 'Latitudine e longitudine',
+        date: formatDateWithTime(new Date()),
+        filters: {
+          interval: intervalData,
+          dateFrom: formatDate(dateFrom),
+          dateTo: formatDate(dateTo),
+          lat: latitudine.current?.value,
+          long: longitudine.current?.value,
+        },
       },
     });
     setEnabled_data(false);
@@ -62,8 +63,6 @@ const FormSearchLatLong = () => {
       !isNaN(Number(longitudine.current?.value))
     ) {
       fieldError = setError.allNoError(fieldError);
-      // useStore.getState().populateLat(null);
-      // useStore.getState().populateLong(null);
       setEnabled_data(true);
       setErrorFields({ ...errorFields, ...fieldError });
     } else {
@@ -83,7 +82,7 @@ const FormSearchLatLong = () => {
 
   return (
     <Box className={style.form}>
-      <div className={style.box}>
+      <div className="flex_row_center_w100">
         <DatePickerFromTo
           dateFromTo={{
             dateF: { dateFrom: dateFrom, setDateFrom: setDateFrom },
@@ -97,7 +96,7 @@ const FormSearchLatLong = () => {
         />
       </div>
       <FindLatLong />
-      <Box className={style.box} sx={{ mb: 2 }}>
+      <Box className="flex_row_center_w100" sx={{ mb: 2 }}>
         <TextField
           error={errorFields.latitudine.IsError}
           helperText={errorFields.latitudine.textMessage}

@@ -3,7 +3,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextField } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IDatePickerFromTo, IIntervalData } from '../../model';
+import { IDatePickerFromTo, IIntervalData } from '../model';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -26,7 +26,7 @@ const DatePickerFromTo = ({
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+    <Box className="flex_column_center">
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">
           Intervallo intercorrenza dati

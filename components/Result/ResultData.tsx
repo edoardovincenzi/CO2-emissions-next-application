@@ -1,7 +1,7 @@
 import React from 'react';
 import { IStatistics } from '../../model';
 import { getSplitString } from '../../utility';
-import { useStore } from '../../utility/costant';
+import { useStore } from '../../utility/initialValue';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -11,12 +11,11 @@ import styles from './ResultData.module.css';
 import { Box, Paper } from '@mui/material';
 import Divider from '@mui/material/Divider';
 
-const ResultData = () => {
-  const dataAPIStore = useStore((store) => store.dataAPI);
+const ResultData = ({ data }: { data: IStatistics[] }) => {
   return (
     <>
-      {dataAPIStore.length > 0 ? (
-        dataAPIStore.map((item: IStatistics, index: number) => (
+      {data.length > 0 ? (
+        data.map((item: IStatistics, index: number) => (
           <Accordion key={index} className={styles.accordion}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -39,13 +38,7 @@ const ResultData = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Divider sx={{ mb: 1 }} />
-              <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                }}
-              >
+              <Box className="flex_column_center">
                 <Typography>
                   Media emissioni CO2:{' '}
                   <strong className={styles.strong}>
@@ -67,7 +60,7 @@ const ResultData = () => {
       ) : (
         <Paper
           elevation={3}
-          className={`${styles.paperBasic} ${styles.paperFlex}`}
+          className={`${styles.paperBasic} flex_column_center_w100`}
           sx={{ mt: 2, mb: 3, p: 3 }}
         >
           <Typography>Non ci sono risultati</Typography>

@@ -1,8 +1,9 @@
 import { QueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { APIBASEURL } from '../constant';
 import { IAppStore, ICrumbs, IErrorFields, IStatistics } from '../model';
 import create from 'zustand';
+
+export const APIBASEURL = 'https://api.v2.emissions-api.org/api/v2/';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,19 +36,18 @@ export const useStore = create<IAppStore>((set) => ({
   cityFounded: '',
   latitudine: null,
   longitudine: null,
-  error: null,
-  dataAPI: [],
-  errorDataAPI: '',
-  infoDataAPI: {
-    tab: '',
-    date: '',
-    filters: { interval: '', dateFrom: '', dateTo: '' },
+  dataAPI: {
+    data: [],
+    info: {
+      tab: '',
+      date: '',
+      filters: { interval: '', dateFrom: '', dateTo: '' },
+    },
   },
+  errorDataAPI: '',
   populateCityFounded: (newCityFounded) => set({ cityFounded: newCityFounded }),
   populateLat: (newLat) => set({ latitudine: newLat }),
   populateLong: (newLong) => set({ longitudine: newLong }),
-  populateError: (newError) => set({ error: newError }),
   populateDataAPI: (newDataAPI) => set({ dataAPI: newDataAPI }),
   populateErrorDataAPI: (newError) => set({ errorDataAPI: newError }),
-  populateInfoDataAPI: (newInfoDataAPI) => set({ infoDataAPI: newInfoDataAPI }),
 }));

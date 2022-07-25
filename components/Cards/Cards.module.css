@@ -1,14 +1,15 @@
 .cardPaper {
   height: 10vw;
   width: 10vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   border-radius: 8px;
   background-color: #dbd8f0;
-  transition: transform 1s;
   text-align: center;
+  transition: all 0.8s;
+}
+
+.cardPaper:hover {
+  background-color: #1976d2;
+  color: white;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 576px) {

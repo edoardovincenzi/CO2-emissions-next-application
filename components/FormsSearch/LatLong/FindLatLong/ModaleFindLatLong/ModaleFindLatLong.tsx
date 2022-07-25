@@ -1,19 +1,19 @@
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import styles from './ModaleFindLatLong.module.css';
-import { ICityState, IModal } from '../../../model';
+import { ICityState, IModal } from '../../../../../model';
 import { Box, Button, TextField } from '@mui/material';
 import { useRef, useState } from 'react';
-import { useStore } from '../../../utility/costant';
-import { useGetLatLong_city } from '../../../API/APIcalls';
+import { useStore } from '../../../../../utility/initialValue';
+import { useGetLatLong_city } from '../../../../../API/APIcalls';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
 
 const ModaleFindLatLong = ({ handleClose, open }: IModal) => {
   const [cityState, setCityState] = useState<string>('');
+  const [errorState, setErrorState] = useState<string>('');
   const { error, data, isFetching } = useGetLatLong_city(cityState);
   const city = useRef<HTMLInputElement | null>();
-  const storeError = useStore((state) => state.error);
 
   const handleFind = () => {
     setCityState(city.current?.value ?? '');
@@ -27,12 +27,14 @@ const ModaleFindLatLong = ({ handleClose, open }: IModal) => {
       .getState()
       .populateLong(Number(data.results[0].geometry.lng.toFixed(0)));
     useStore.getState().populateCityFounded(data.results[0].formatted);
-    useStore.getState().populateError('');
+    setErrorState('');
     handleClose();
   } else if (cityState && data && data.total_results === 0) {
-    useStore.getState().populateError('Città non trovata');
+    setErrorState('Città non trovata');
+    setCityState('');
   } else if (cityState && error) {
-    useStore.getState().populateError('Errore durante la chiamata al server');
+    setErrorState('Errore durante la chiamata al server, riprova più tardi');
+    setCityState('');
   }
 
   return (
@@ -58,7 +60,7 @@ const ModaleFindLatLong = ({ handleClose, open }: IModal) => {
           label="Città"
           variant="standard"
         />
-        {storeError && <p className={styles.error}>{storeError}</p>}
+        {errorState && <p className={styles.error}>{errorState}</p>}
         {isFetching ? (
           <LoadingButton
             loading
