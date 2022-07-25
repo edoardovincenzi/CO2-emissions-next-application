@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import styles from './ModaleFindLatLong.module.css';
 import { ICityState, IModal } from '../../../../../model';
 import { Box, Button, TextField } from '@mui/material';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useStore } from '../../../../../utility/initialValue';
 import { useGetLatLong_city } from '../../../../../API/APIcalls';
 import { LoadingButton } from '@mui/lab';
@@ -19,23 +19,25 @@ const ModaleFindLatLong = ({ handleClose, open }: IModal) => {
     setCityState(city.current?.value ?? '');
   };
 
-  if (cityState && data && data.total_results !== 0) {
-    useStore
-      .getState()
-      .populateLat(Number(data.results[0].geometry.lat.toFixed(0)));
-    useStore
-      .getState()
-      .populateLong(Number(data.results[0].geometry.lng.toFixed(0)));
-    useStore.getState().populateCityFounded(data.results[0].formatted);
-    setErrorState('');
-    handleClose();
-  } else if (cityState && data && data.total_results === 0) {
-    setErrorState('Città non trovata');
-    setCityState('');
-  } else if (cityState && error) {
-    setErrorState('Errore durante la chiamata al server, riprova più tardi');
-    setCityState('');
-  }
+  useEffect(() => {
+    if (cityState && data && data.total_results !== 0) {
+      useStore
+        .getState()
+        .populateLat(Number(data.results[0].geometry.lat.toFixed(0)));
+      useStore
+        .getState()
+        .populateLong(Number(data.results[0].geometry.lng.toFixed(0)));
+      useStore.getState().populateCityFounded(data.results[0].formatted);
+      setErrorState('');
+      handleClose();
+    } else if (cityState && data && data.total_results === 0) {
+      setErrorState('Città non trovata');
+      setCityState('');
+    } else if (cityState && error) {
+      setErrorState('Errore durante la chiamata al server, riprova più tardi');
+      setCityState('');
+    }
+  }, [cityState, data]);
 
   return (
     <Modal

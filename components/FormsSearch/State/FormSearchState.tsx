@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { TextField } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
@@ -26,29 +26,34 @@ const FormSearchState = () => {
   const [errorFields, setErrorFields] =
     useState<IErrorFields>(errorFieldsInitial);
 
-  const { data, isFetching } = useGetDataAdvance_country_data_interval(
+  const { data, isFetching, error } = useGetDataAdvance_country_data_interval(
     autocompleteValue,
     intervalData,
     dateFrom,
     dateTo,
     enabled_data
   );
-  if (enabled_data && data) {
-    useStore.getState().populateDataAPI(data);
-    useStore.getState().populateInfoDataAPI({
-      tab: 'Stato',
-      date: formatDateWithTime(new Date()),
-      filters: {
-        interval: intervalData,
-        dateFrom: formatDate(dateFrom),
-        dateTo: formatDate(dateTo),
-        state: autocompleteValue,
-      },
-    });
-    setEnabled_data(false);
-  }
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+
+  useEffect(() => {
+    if (enabled_data && data) {
+      setEnabled_data(false);
+      useStore.getState().populateDataAPI({
+        data,
+        info: {
+          tab: 'Stato',
+          date: formatDateWithTime(new Date()),
+          filters: {
+            interval: intervalData,
+            dateFrom: formatDate(dateFrom),
+            dateTo: formatDate(dateTo),
+            state: autocompleteValue,
+          },
+        },
+      });
+    }
+  }, [enabled_data, data]);
+
+  const onSubmit = () => {
     let fieldError = errorFieldsInitial;
     if (
       !(
@@ -64,67 +69,78 @@ const FormSearchState = () => {
     }
     setErrorFields({ ...errorFields, ...fieldError });
   };
-
-  const dataArrayValue =
-    (countries &&
-      Object.entries(countries).map((item) => `[${item[0]}] ${item[1]}`)) ??
-    [];
+  const dataArrayValue: any = useMemo(
+    () =>
+      (countries &&
+        Object.entries(countries).map(
+          (item: any) => `[${item[0]}] ${item[1]}`
+        )) ??
+      [],
+    [countries]
+  );
 
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
-      <div className="flex_row_center_w100">
-        <DatePickerFromTo
-          dateFromTo={{
-            dateF: { dateFrom: dateFrom, setDateFrom: setDateFrom },
-            dateT: { dateTo: dateTo, setDateTo: setDateTo },
-          }}
-          intervalDataState={{
-            intervalData: intervalData,
-            setIntervalData: setIntervalData,
-          }}
-          errorFields={errorFields}
-        />
-      </div>
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={dataArrayValue}
-        className={styles.autocomplete}
-        sx={{
-          mb: 1,
-        }}
-        renderInput={(params) => (
-          <TextField
-            required
-            error={Boolean(errorCounttries)}
-            helperText={
-              errorCounttries ? 'Errore durante il recupero degli stati' : ''
-            }
-            {...params}
-            label="Stati"
+    <div className={styles.form}>
+      <>
+        <div className="flex_row_center_w100">
+          <DatePickerFromTo
+            dateFromTo={{
+              dateF: { dateFrom: dateFrom, setDateFrom: setDateFrom },
+              dateT: { dateTo: dateTo, setDateTo: setDateTo },
+            }}
+            intervalDataState={{
+              intervalData: intervalData,
+              setIntervalData: setIntervalData,
+            }}
+            errorFields={errorFields}
           />
+        </div>
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={dataArrayValue}
+          className={styles.autocomplete}
+          sx={{
+            mb: 1,
+          }}
+          renderInput={(params) => (
+            <TextField
+              required
+              error={Boolean(errorCounttries)}
+              helperText={
+                errorCounttries ? 'Errore durante il recupero degli stati' : ''
+              }
+              {...params}
+              label="Stati"
+            />
+          )}
+          onChange={(event, values) => {
+            if (values && typeof values === 'string') {
+              setAutocompleteValue(values.slice(1, 3));
+            }
+          }}
+        />
+        {isFetching ? (
+          <LoadingButton
+            loading
+            loadingPosition="start"
+            startIcon={<SaveIcon />}
+            variant="outlined"
+          >
+            Cerca
+          </LoadingButton>
+        ) : (
+          <Button variant="contained" onClick={onSubmit}>
+            Cerca
+          </Button>
         )}
-        onChange={(event, values) => {
-          if (values && typeof values === 'string') {
-            setAutocompleteValue(values.slice(1, 3));
-          }
-        }}
-      />
-      {isFetching ? (
-        <LoadingButton
-          loading
-          loadingPosition="start"
-          startIcon={<SaveIcon />}
-          variant="outlined"
-        >
-          Cerca
-        </LoadingButton>
-      ) : (
-        <Button variant="contained" type="submit">
-          Cerca
-        </Button>
-      )}
-    </form>
+        {error && (
+          <p className={styles.errorMessage}>
+            Erorre durante la chiamata al server
+          </p>
+        )}
+      </>
+    </div>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
-import style from './FormSearchLatLong.module.css';
+import styles from './FormSearchLatLong.module.css';
 import DatePickerFromTo from 'DatePickerFromTo';
 import { formatDate, formatDateWithTime } from '../../../utility';
 import { errorFieldsInitial, useStore } from '../../../utility/initialValue';
@@ -23,7 +23,7 @@ const FormSearchLatLong = () => {
   const storeLatitudine = useStore((state) => state.latitudine);
   const storeLongitudine = useStore((state) => state.longitudine);
 
-  const { data, isFetching } = useGetDataAdvance_lat_long_data_interval(
+  const { data, isFetching, error } = useGetDataAdvance_lat_long_data_interval(
     Number(latitudine.current?.value),
     Number(longitudine.current?.value),
     intervalData,
@@ -32,23 +32,25 @@ const FormSearchLatLong = () => {
     enabled_data
   );
 
-  if (enabled_data && data) {
-    useStore.getState().populateDataAPI({
-      data,
-      info: {
-        tab: 'Latitudine e longitudine',
-        date: formatDateWithTime(new Date()),
-        filters: {
-          interval: intervalData,
-          dateFrom: formatDate(dateFrom),
-          dateTo: formatDate(dateTo),
-          lat: latitudine.current?.value,
-          long: longitudine.current?.value,
+  useEffect(() => {
+    if (enabled_data && data) {
+      useStore.getState().populateDataAPI({
+        data,
+        info: {
+          tab: 'Latitudine e longitudine',
+          date: formatDateWithTime(new Date()),
+          filters: {
+            interval: intervalData,
+            dateFrom: formatDate(dateFrom),
+            dateTo: formatDate(dateTo),
+            lat: latitudine.current?.value,
+            long: longitudine.current?.value,
+          },
         },
-      },
-    });
-    setEnabled_data(false);
-  }
+      });
+      setEnabled_data(false);
+    }
+  }, [enabled_data, data]);
 
   useEffect(() => {
     latitudine.current.value = storeLatitudine;
@@ -81,64 +83,71 @@ const FormSearchLatLong = () => {
     useState<IErrorFields>(errorFieldsInitial);
 
   return (
-    <Box className={style.form}>
-      <div className="flex_row_center_w100">
-        <DatePickerFromTo
-          dateFromTo={{
-            dateF: { dateFrom: dateFrom, setDateFrom: setDateFrom },
-            dateT: { dateTo: dateTo, setDateTo: setDateTo },
-          }}
-          intervalDataState={{
-            intervalData: intervalData,
-            setIntervalData: setIntervalData,
-          }}
-          errorFields={errorFields}
-        />
-      </div>
-      <FindLatLong />
-      <Box className="flex_row_center_w100" sx={{ mb: 2 }}>
-        <TextField
-          error={errorFields.latitudine.IsError}
-          helperText={errorFields.latitudine.textMessage}
-          id="standard-basic"
-          type="number"
-          inputRef={latitudine}
-          label="Latitudine"
-          variant="standard"
-          required
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField
-          sx={{ ml: 1 }}
-          error={errorFields.longitudine.IsError}
-          helperText={errorFields.longitudine.textMessage}
-          id="standard-basic"
-          type="number"
-          inputRef={longitudine}
-          label="Longitudine"
-          variant="standard"
-          required
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-      </Box>
-      {isFetching ? (
-        <LoadingButton
-          loading
-          loadingPosition="start"
-          startIcon={<SaveIcon />}
-          variant="outlined"
-        >
-          Cerca
-        </LoadingButton>
-      ) : (
-        <Button variant="contained" onClick={onSubmit}>
-          Cerca
-        </Button>
-      )}
+    <Box className={styles.form}>
+      <>
+        <div className="flex_row_center_w100">
+          <DatePickerFromTo
+            dateFromTo={{
+              dateF: { dateFrom: dateFrom, setDateFrom: setDateFrom },
+              dateT: { dateTo: dateTo, setDateTo: setDateTo },
+            }}
+            intervalDataState={{
+              intervalData: intervalData,
+              setIntervalData: setIntervalData,
+            }}
+            errorFields={errorFields}
+          />
+        </div>
+        <FindLatLong />
+        <Box className="flex_row_center_w100" sx={{ mb: 2 }}>
+          <TextField
+            error={errorFields.latitudine.IsError}
+            helperText={errorFields.latitudine.textMessage}
+            id="standard-basic"
+            type="number"
+            inputRef={latitudine}
+            label="Latitudine"
+            variant="standard"
+            required
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            sx={{ ml: 1 }}
+            error={errorFields.longitudine.IsError}
+            helperText={errorFields.longitudine.textMessage}
+            id="standard-basic"
+            type="number"
+            inputRef={longitudine}
+            label="Longitudine"
+            variant="standard"
+            required
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </Box>
+        {isFetching ? (
+          <LoadingButton
+            loading
+            loadingPosition="start"
+            startIcon={<SaveIcon />}
+            variant="outlined"
+          >
+            Cerca
+          </LoadingButton>
+        ) : (
+          <Button variant="contained" onClick={onSubmit}>
+            Cerca
+          </Button>
+        )}
+        {error && (
+          <p className={styles.errorMessage}>
+            Erorre durante la chiamata al server
+          </p>
+        )}
+      </>
     </Box>
   );
 };

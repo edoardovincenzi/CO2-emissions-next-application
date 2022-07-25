@@ -12,7 +12,6 @@ const FindLatLong = () => {
   const long = useStore((store) => store.longitudine);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    useStore.getState().populateError('');
     setOpen(false);
   };
 

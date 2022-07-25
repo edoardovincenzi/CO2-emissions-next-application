@@ -39,3 +39,8 @@ Chiamate API
 
 - Axios
 - React query
+
+## Scelta progettuale:
+
+Nelle chiamata API, di conseguenza anche nella visualizzazione, ho preso la libertà di prendere sempre i primi 30 valori.
+In futuro potrei aggiungere la tabellazione dei valori e andrò a paginare i risultati, cosi da poterli visualizzare tutti.

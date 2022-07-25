@@ -56,7 +56,7 @@ export const useGetDataAdvance_country_data_interval = (
     async (): Promise<IStatistics[]> => {
       return await (
         await axiosCall.get(
-          `carbonmonoxide/statistics.json?country=${country}&interval=${inteval}&begin=${dateFromFormat}&end=${dateToFromat}&limit=100&offset=0`
+          `carbonmonoxide/statistics.json?country=${country}&interval=${inteval}&begin=${dateFromFormat}&end=${dateToFromat}&limit=30&offset=0`
         )
       ).data;
     },
@@ -87,7 +87,7 @@ export const useGetDataAdvance_lat_long_data_interval = (
             0
           )}&point=${long.toFixed(
             0
-          )}&interval=${inteval}&begin=${dateFromFormat}&end=${dateToFromat}&limit=100&offset=0`
+          )}&interval=${inteval}&begin=${dateFromFormat}&end=${dateToFromat}&limit=30&offset=0`
         )
       ).data;
     },
