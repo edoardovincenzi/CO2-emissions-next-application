@@ -1,6 +1,6 @@
 # Progetto Next
 
-### Link del progetto : https://simple-next-application.vercel.app/
+### Link del progetto : [CO2-emissions](https://co2-emissions.vercel.app/)
 
 In questa web app visualizzerai le emissioni di CO2 per paese, l’API ti darà tantissime possibilità di valutare i dati della CO2.
 
