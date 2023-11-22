@@ -8,7 +8,7 @@ const Footer = () => {
     <div className={styles.footer}>
       <p>Esercizio di Edoardo Vincenzi</p>
       <div className={styles.footerLink}>
-        <Link href="https://edoardovincenzi.netlify.app/">
+        <Link href="https://www.edoardovincenzi.it/en">
           <div className="flex_row_center">
             <WebAssetIcon />
             <p>Sito web</p>
